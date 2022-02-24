@@ -1,0 +1,138 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5> Add Assignment</h5>
+        </div>
+        <div class="card-block">
+          <div class='row'>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="ClassId" (change)="onSelectClass($event)" class="form-control form-control-Inverse ">
+                  <option [ngValue]="null">Select Class</option>
+                  <option *ngFor="let data of classData" [value]="data.masterClassId">{{data.name}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.ClassId.errors?.required 
+            && (form.controls.ClassId.dirty || form.controls.ClassId.touched) || 
+            (submitted && form.controls.ClassId.errors?.required)">Class Required!</small>
+                <span class="form-bar"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="SectionId" (change)="onSelectSection($event)" class="form-control form-control-Inverse ">
+                  <option [ngValue]="null">Select Section</option>
+                  <option *ngFor="let data of sectionData" [value]="data.masterSectionId">{{data.sectionName}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.SectionId.errors?.required 
+            && (form.controls.SectionId.dirty || form.controls.SectionId.touched) || 
+            (submitted && form.controls.SectionId.errors?.required)">Section Required!</small>
+                <span class="form-bar"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="SubjectId" class="form-control form-control-Inverse ">
+                  <option [ngValue]="null">Select Subject</option>
+                  <option *ngFor="let data of subjectData" [ngValue]="data.masterSubjectId">{{data.subjectName}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.SubjectId.errors?.required 
+            && (form.controls.SubjectId.dirty || form.controls.SubjectId.touched) || 
+            (submitted && form.controls.SubjectId.errors?.required)">Subject Required!</small>
+                <span class="form-bar"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="AssignmentType" class="form-control form-control-Inverse ">
+                  <option [ngValue]="null">Select Type</option>
+                  <option [ngValue]="1">Academic</option>
+                  <option [ngValue]="2">Sport</option>
+                  <option [ngValue]="3">Other</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.AssignmentType.errors?.required 
+            && (form.controls.AssignmentType.dirty || form.controls.AssignmentType.touched) || 
+            (submitted && form.controls.AssignmentType.errors?.required)">Type Required!</small>
+                <span class="form-bar"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="Name" class="form-control" formControlName="Name">
+                <small class="messages text-danger" *ngIf="form.controls.Name.errors?.required 
+            && (form.controls.Name.dirty || form.controls.Name.touched) || 
+            (submitted && form.controls.Name.errors?.required)">Assignment Title Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Assignment Title</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="date" name="ToBeSubmittedDate" class="form-control" formControlName="ToBeSubmittedDate">
+                <small class="messages text-danger" *ngIf="form.controls.ToBeSubmittedDate.errors?.required 
+            && (form.controls.ToBeSubmittedDate.dirty || form.controls.ToBeSubmittedDate.touched) || 
+            (submitted && form.controls.ToBeSubmittedDate.errors?.required)"> Last Submit Date Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Last Submit Date</label>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <textarea name="Remark" class="form-control" formControlName="Remark"></textarea>
+                <small class="messages text-danger" *ngIf="form.controls.Remark.errors?.required 
+            && (form.controls.Remark.dirty || form.controls.Remark.touched) || 
+            (submitted && form.controls.Remark.errors?.required)">Remark Reuired!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Remark</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <textarea name="Description" class="form-control" formControlName="Description"></textarea>
+                <!-- <input type="text" name="Description" class="form-control" formControlName="Description"> -->
+                <small class="messages text-danger" *ngIf="form.controls.Description.errors?.required 
+            && (form.controls.Description.dirty || form.controls.Description.touched) || 
+            (submitted && form.controls.Description.errors?.required)">Description Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Description</label>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-12">
+              <div class="form-group form-default">
+                <input type="file" name="files[]" id="files" multiple="multiple">
+                <small class="messages text-danger" *ngIf="form.controls.files.errors?.required 
+            && (form.controls.files.dirty || form.controls.files.touched) || 
+            (submitted && form.controls.files.errors?.required)">File Reuired!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Files</label>
+              </div>
+            </div> -->
+
+            <div class="col-md-12">
+              <div class="card-block">
+                <div class="sub-title">Attachments</div>
+                <input type="file" name="Files[]" id="Files" multiple="multiple" (change)="uploadFiles($event)">
+                <!-- <span class="form-bar"></span>
+                <label class="float-label">Attachments</label> -->
+              </div>
+            </div>
+
+
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary ripple light pull-right"> Submit </button>
+              <button type="button" (click)="viewAssignment()" class="btn btn-primary ripple light pull-right">View Assignment</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,61 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <app-card [title]="'Subject Mapping'">
+        <div class="dt-responsive">
+
+          <div class="table-responsive">
+            <table class="table table-sm table-styling table-striped table-bordered full-data-table">
+              <thead class="table-primary">
+                <th>Classes / Subjects</th>
+                <th *ngFor="let item of subjectData">{{item.subjectName}}</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let class of classData">
+
+                  <td>
+                    <div class="checkbox-fade fade-in-primary">
+                      <label>
+                        <input type="checkbox" value="{{class.masterClassId}}" name="{{class.masterClassId}}"
+                          (change)="checkAll($event)">
+                        <span class="cr">
+                          <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                        </span>
+                        <span>{{class.name}}</span>
+                      </label>
+                    </div>
+
+                  </td>
+
+                  <td *ngFor="let subject of subjectData">
+                    <div class="checkbox-fade fade-in-primary">
+                      <label>
+                        <input
+                          (change)="clickedItem(subject.masterSubjectId,class.masterClassId, $event.target.checked)"
+                          type="checkbox" value="{{subject.masterClassId}}" name="{{subject.masterClassId}}">
+                        <span class="cr">
+                          <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                        </span>
+                        <!-- <span>Check</span> -->
+                      </label>
+
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+            <div class="col-md-12">
+              <button type="button" (click)="saveMapping()" class="btn btn-primary ripple light pull-right"> Save Mapping
+              </button>
+            </div>
+          </div>
+         
+        </div>
+      </app-card>
+
+      
+    </div>
+  </div>
+</div>

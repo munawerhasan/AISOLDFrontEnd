@@ -1,0 +1,155 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5> Class Detail</h5>
+        </div>
+        <div class="card-block">
+          <div class='row'>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" financialYear="financialYear" class="form-control"
+                  formControlName="financialYear">
+                <small class="messages text-danger" *ngIf="form.controls.financialYear.errors?.required 
+            && (form.controls.financialYear.dirty || form.controls.financialYear.touched) || 
+            (submitted && form.controls.financialYear.errors?.required)"> Financial Year Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Financial Year</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="masterBatchId" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.masterBatchId">{{data.name}}</option> -->
+                  <option *ngFor="let data of batches" [ngValue]="data.masterBatchId">{{data.name}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.masterBatchId.errors?.required 
+            && (form.controls.masterBatchId.dirty || form.controls.masterBatchId.touched) || 
+            (submitted && form.controls.masterBatchId.errors?.required)">Batch Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Batch</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="masterClassId" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.masterClassId">{{data.name}}</option> -->
+                  <option *ngFor="let data of masterClasses" [ngValue]="data.masterClassId">{{data.name}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.masterClassId.errors?.required 
+            && (form.controls.masterClassId.dirty || form.controls.masterClassId.touched) || 
+            (submitted && form.controls.masterClassId.errors?.required)">Master Class Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Master Class</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="masterSectionId" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.masterSectionId">{{data.name}}</option> -->
+                  <option *ngFor="let data of masterSections" [ngValue]="data.masterSectionId">{{data.name}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.masterSectionId.errors?.required 
+            && (form.controls.masterSectionId.dirty || form.controls.masterSectionId.touched) || 
+            (submitted && form.controls.masterSectionId.errors?.required)">Master Section Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Master Section</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="date" name="startDate" class="form-control" formControlName="startDate">
+                <small class="messages text-danger" *ngIf="form.controls.startDate.errors?.required 
+            && (form.controls.startDate.dirty || form.controls.startDate.touched) || 
+            (submitted && form.controls.startDate.errors?.required)">Start Date Reuired!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Start Date</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="date" name="endDate" class="form-control" formControlName="endDate">
+                <small class="messages text-danger" *ngIf="form.controls.endDate.errors?.required 
+            && (form.controls.endDate.dirty || form.controls.endDate.touched) || 
+            (submitted && form.controls.endDate.errors?.required)">End Date Reuired!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">End Date</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="assessmentMode" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.assessmentMode">{{data.name}}</option> -->
+                  <option value="">Select Assessment Mode</option>
+                  <option [ngValue]="1">Grade System</option>
+                  <option [ngValue]="2">Number</option>
+                  <option [ngValue]="3">Other</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.assessmentMode.errors?.required 
+            && (form.controls.assessmentMode.dirty || form.controls.assessmentMode.touched) || 
+            (submitted && form.controls.assessmentMode.errors?.required)">Assessment Mode Reuired!</small>
+                <span class="form-bar"></span>
+                <span class="form-bar"></span>
+                <label class="float-label">Assessment Mode</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="number" name="stength" class="form-control" formControlName="stength">
+                <small class="messages text-danger" *ngIf="form.controls.stength.errors?.required 
+            && (form.controls.stength.dirty || form.controls.stength.touched) || 
+            (submitted && form.controls.stength.errors?.required)">Stength Reuired!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Stength</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="number" name="displayOrder" class="form-control" formControlName="displayOrder">
+                <small class="messages text-danger" *ngIf="form.controls.displayOrder.errors?.required 
+            && (form.controls.displayOrder.dirty || form.controls.displayOrder.touched) || 
+            (submitted && form.controls.displayOrder.errors?.required)">Display Order Reuired!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Display Order</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="activeStatus" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.activeStatus">{{data.name}}</option> -->
+                  <option value="">Select Status</option>
+                  <option [ngValue]="1">Active</option>
+                  <option [ngValue]="2">InActive</option>
+                  <option [ngValue]="3">Suspended</option>
+                  <option [ngValue]="4">Deleted</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.activeStatus.errors?.required 
+            && (form.controls.activeStatus.dirty || form.controls.activeStatus.touched) || 
+            (submitted && form.controls.activeStatus.errors?.required)">Status Reuired!</small>
+                <span class="form-bar"></span>
+                <span class="form-bar"></span>
+                <label class="float-label">Status</label>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary ripple light pull-right" > Submit </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

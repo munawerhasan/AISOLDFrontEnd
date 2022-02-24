@@ -1,0 +1,176 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <app-card [title]="'Assignment List'" [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+
+        <div *ngIf="filterPermission" class="row">
+          <div class="col-sm-3">
+            <select (change)="onSelectClass($event)" class="select" class="form-control form-control-Inverse ">
+              <option selected [value]=0>Select Class</option>
+              <option *ngFor="let data of masterClasses" [value]="data.masterClassId">{{data.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-3">
+            <select (change)="onSelectSection($event)" class="select" class="form-control form-control-Inverse ">
+              <option selected [value]=0>Select Section</option>
+              <option *ngFor="let data of masterSections" [value]="data.masterSectionId">{{data.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-3">
+            <select (change)="onSelectSubject($event)" class="select" class="form-control form-control-Inverse ">
+              <option selected [value]=0>Select Subject</option>
+              <option *ngFor="let data of masterSubject" [value]="data.masterSubjectId">{{data.subjectName}}</option>
+            </select>
+          </div>
+          <div class="col-sm-3">
+            <select (change)="onSelectStatus($event)" class="select" class="form-control form-control-Inverse ">
+              <option selected [value]=0>Select All</option>
+              <option [value]=1>Active</option>
+              <option [value]=2>InActive</option>
+              <option [value]=6>Deleted</option>
+            </select>
+          </div>
+        </div>
+        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+
+          <div *ngFor="let item of data">
+            <ngb-panel id="{{item.assignmentId}}"
+              title=" {{item.createdDate | date:'medium'}} - {{item.subjectName}} - {{item.name}} ">
+              <ng-template ngbPanelContent>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Assignment Name </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.name}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Assign To </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.className}} - {{item.sectionName}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Publish Date </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <!-- {{formData.firstName + ' ' + formData.lastName}} -->
+                    <p>{{item.createdDate | date:'medium'}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Publish By </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.publisherName}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Submit Date </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.toBeSubmittedDate | date}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Attachments </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <div class="row align-items-center m-b-30">
+                      <div *ngFor="let attachment of item.attachments">
+
+                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                          <div class="col-auto">
+                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+
+                            </i> -->
+                          </div>
+                        </a>
+                        <!-- <img  class="img-60" src="{{baseURL}}/{{attachment.path}}"> -->
+                      </div>
+                      <!-- <div class="col-auto">
+                        <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Description </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>
+                      {{item.description}}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class='col-3 col-sm-3'>
+                    <div class="form-group">
+                      <label class="form-control-label">Status </label>
+                    </div>
+                  </div>
+                  <div class='col-3 col-sm-3'>
+                    <p>
+                      Incomplete
+                    </p>
+                  </div>
+                  <div class='col-3 col-sm-3'>
+                    <p>
+                      <input type="button" (click)="gotoAssessment(item.assignmentId)"
+                        name="View Assessment" value="View Assessment"
+                        class="btn btn-primary ripple light pull-right">
+                    </p>
+                  </div>
+                  <div class='col-3 col-sm-3'>
+                    <p>
+                      <input type="button" (click)="gotoUserAssignmentActivity(item.assignmentId)"
+                        name="View Student Activity" value="View Student Activity"
+                        class="btn btn-primary ripple light pull-right">
+                    </p>
+                  </div>
+                </div>
+
+
+              </ng-template>
+            </ngb-panel>
+          </div>
+
+        </ngb-accordion>
+      </app-card>
+    </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

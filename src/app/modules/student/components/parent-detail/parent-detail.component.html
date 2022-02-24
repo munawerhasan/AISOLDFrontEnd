@@ -1,0 +1,358 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="tab-pane active">
+    <h4 class="head text-center">{{title}}</h4>
+    <br />
+    <div class='row'>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="fatherFullName" class="form-control" formControlName="fatherFullName">
+          <small class="messages text-danger" *ngIf="form.controls.fatherFullName.errors?.required 
+          && (form.controls.fatherFullName.dirty || form.controls.fatherFullName.touched) || 
+          (submitted && form.controls.fatherFullName.errors?.required)">Father Name Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Name</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="motherFullName" class="form-control" formControlName="motherFullName">
+          <small class="messages text-danger" *ngIf="form.controls.motherFullName.errors?.required 
+          && (form.controls.motherFullName.dirty || form.controls.motherFullName.touched) || 
+          (submitted && form.controls.motherFullName.errors?.required)">Mother Name Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Name</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="fatherEmail" class="form-control" formControlName="fatherEmail">
+          <small class="messages text-danger" *ngIf="form.controls.fatherEmail.errors?.required 
+          && (form.controls.fatherEmail.dirty || form.controls.fatherEmail.touched) || 
+          (submitted && form.controls.fatherEmail.errors?.required)">Father Email Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Email </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="motherEmail" class="form-control" formControlName="motherEmail">
+          <small class="messages text-danger" *ngIf="form.controls.motherEmail.errors?.required 
+          && (form.controls.motherEmail.dirty || form.controls.motherEmail.touched) || 
+          (submitted && form.controls.motherEmail.errors?.required)">Mother Email Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Email</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="fatherContactNumber" class="form-control" formControlName="fatherContactNumber">
+          <small class="messages text-danger" *ngIf="form.controls.fatherContactNumber.errors?.required 
+          && (form.controls.fatherContactNumber.dirty || form.controls.fatherContactNumber.touched) || 
+          (submitted && form.controls.fatherContactNumber.errors?.required)">Father Contact Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Contact Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="motherContactNumber" class="form-control" formControlName="motherContactNumber">
+          <small class="messages text-danger" *ngIf="form.controls.motherContactNumber.errors?.required 
+          && (form.controls.motherContactNumber.dirty || form.controls.motherContactNumber.touched) || 
+          (submitted && form.controls.motherContactNumber.errors?.required)">Mother Contact Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Contact Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="datetime" name="fatherDOB" class="form-control" formControlName="fatherDOB">
+          <small class="messages text-danger" *ngIf="form.controls.fatherDOB.errors?.required 
+          && (form.controls.fatherDOB.dirty || form.controls.fatherDOB.touched) || 
+          (submitted && form.controls.fatherDOB.errors?.required)">Father Date Of Birth Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Date Of Birth</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="datetime" name="motherDOB" class="form-control" formControlName="motherDOB">
+          <small class="messages text-danger" *ngIf="form.controls.motherDOB.errors?.required 
+          && (form.controls.motherDOB.dirty || form.controls.motherDOB.touched) || 
+          (submitted && form.controls.motherDOB.errors?.required)">Mother Date Of Birth Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Date Of Birth</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="fatherEducation" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Male</option>
+            <option [ngValue]="2">Female</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.fatherEducation.errors?.required 
+          && (form.controls.fatherEducation.dirty || form.controls.fatherEducation.touched) || 
+          (submitted && form.controls.fatherEducation.errors?.required)">Father Education Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Education </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="motherEducation" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Male</option>
+            <option [ngValue]="2">Female</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.motherEducation.errors?.required 
+          && (form.controls.motherEducation.dirty || form.controls.motherEducation.touched) || 
+          (submitted && form.controls.motherEducation.errors?.required)">Mother Education Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Education</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="fatherOccupation" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Male</option>
+            <option [ngValue]="2">Female</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.fatherOccupation.errors?.required 
+          && (form.controls.fatherOccupation.dirty || form.controls.fatherOccupation.touched) || 
+          (submitted && form.controls.fatherOccupation.errors?.required)">Father Occupation Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Occupation </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="motherOccupation" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Male</option>
+            <option [ngValue]="2">Female</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.motherOccupation.errors?.required 
+          && (form.controls.motherOccupation.dirty || form.controls.motherOccupation.touched) || 
+          (submitted && form.controls.motherOccupation.errors?.required)">Mother Occupation Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Occupation</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="religion" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Male</option>
+            <option [ngValue]="2">Female</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.religion.errors?.required 
+          && (form.controls.religion.dirty || form.controls.religion.touched) || 
+          (submitted && form.controls.religion.errors?.required)">Religion Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Religion </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="nationality" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Male</option>
+            <option [ngValue]="2">Female</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.nationality.errors?.required 
+          && (form.controls.nationality.dirty || form.controls.nationality.touched) || 
+          (submitted && form.controls.nationality.errors?.required)">Nationality Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Nationality</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="fatherAadharNumber" class="form-control" formControlName="fatherAadharNumber">
+          <small class="messages text-danger" *ngIf="form.controls.fatherAadharNumber.errors?.required 
+          && (form.controls.fatherAadharNumber.dirty || form.controls.fatherAadharNumber.touched) || 
+          (submitted && form.controls.fatherAadharNumber.errors?.required)">Father Aadhar Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father Aadhar </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="motherAadharNumber" class="form-control" formControlName="motherAadharNumber">
+          <small class="messages text-danger" *ngIf="form.controls.motherAadharNumber.errors?.required 
+          && (form.controls.motherAadharNumber.dirty || form.controls.motherAadharNumber.touched) || 
+          (submitted && form.controls.motherAadharNumber.errors?.required)">Mother Aadhar Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother Aadhar</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="fatherPAN" class="form-control" formControlName="fatherPAN">
+          <small class="messages text-danger" *ngIf="form.controls.fatherPAN.errors?.required 
+          && (form.controls.fatherPAN.dirty || form.controls.fatherPAN.touched) || 
+          (submitted && form.controls.fatherPAN.errors?.required)">Father PAN Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Father PAN </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="motherPAN" class="form-control" formControlName="motherPAN">
+          <small class="messages text-danger" *ngIf="form.controls.motherPAN.errors?.required 
+          && (form.controls.motherPAN.dirty || form.controls.motherPAN.touched) || 
+          (submitted && form.controls.motherPAN.errors?.required)">Mother PAN Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Mother PAN</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select disabled class="select" formControlName="countryId" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1" selected>India</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.countryId.errors?.required 
+          && (form.controls.countryId.dirty || form.controls.countryId.touched) || 
+          (submitted && form.controls.countryId.errors?.required)">Country Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Country</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="stateId" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Inertnal</option>
+            <option [ngValue]="2">External</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.stateId.errors?.required 
+          && (form.controls.stateId.dirty || form.controls.stateId.touched) || 
+          (submitted && form.controls.stateId.errors?.required)">State Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">State</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="city" class="form-control" formControlName="city">
+          <small class="messages text-danger" *ngIf="form.controls.city.errors?.required 
+          && (form.controls.city.dirty || form.controls.city.touched) || 
+          (submitted && form.controls.city.errors?.required)">City Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">City</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="pinCode" class="form-control" formControlName="pinCode">
+          <small class="messages text-danger" *ngIf="form.controls.pinCode.errors?.required 
+          && (form.controls.pinCode.dirty || form.controls.pinCode.touched) || 
+          (submitted && form.controls.pinCode.errors?.required)">Zip Code Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Zip Code</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="address1" class="form-control" formControlName="address1">
+          <small class="messages text-danger" *ngIf="form.controls.address1.errors?.required 
+          && (form.controls.address1.dirty || form.controls.address1.touched) || 
+          (submitted && form.controls.address1.errors?.required)">Address 1 Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Address 1 </label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="address2" class="form-control" formControlName="address2">
+          <small class="messages text-danger" *ngIf="form.controls.address2.errors?.required 
+          && (form.controls.address2.dirty || form.controls.address2.touched) || 
+          (submitted && form.controls.address2.errors?.required)">Address 2 Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Address 2</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber">
+          <small class="messages text-danger" *ngIf="form.controls.phoneNumber.errors?.required 
+          && (form.controls.phoneNumber.dirty || form.controls.phoneNumber.touched) || 
+          (submitted && form.controls.phoneNumber.errors?.required)">Phone Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Phone Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="activeStatus" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Active</option>
+            <option [ngValue]="2">InActive</option>
+            <option [ngValue]="3">Suspended</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.activeStatus.errors?.required 
+          && (form.controls.activeStatus.dirty || form.controls.activeStatus.touched) || 
+          (submitted && form.controls.activeStatus.errors?.required)">Status Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Status</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="isGuardianParentSame" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Active</option>
+            <option [ngValue]="2">InActive</option>
+            <option [ngValue]="3">Suspended</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.isGuardianParentSame.errors?.required 
+          && (form.controls.isGuardianParentSame.dirty || form.controls.isGuardianParentSame.touched) || 
+          (submitted && form.controls.isGuardianParentSame.errors?.required)">Guardian Parent Status Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Guardian Parent Status</label>
+        </div>
+      </div>
+
+
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary ripple light pull-right" > Submit </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,196 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Assignment List'" [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+          <div *ngFor="let item of data">
+            <ngb-panel id="{{item.assignmentId}}"
+              title=" {{item.createdDate | date:'medium'}} - {{item.subjectName}} - {{item.name}} ">
+              <ng-template ngbPanelContent>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Assignment Name </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.name}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Assign To </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.className}} - {{item.sectionName}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Publish Date </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.createdDate | date:'medium'}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Publish By </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.publisherName}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Submit Date </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>{{item.toBeSubmittedDate | date}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Attachments </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <div class="row align-items-center m-b-30">
+                      <div *ngFor="let attachment of item.attachments">
+                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                          <div class="col-auto">
+                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Description </label>
+                    </div>
+                  </div>
+                  <div class='col-9 col-sm-10'>
+                    <p>
+                      {{item.description}}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class='col-3 col-sm-2'>
+                    <div class="form-group">
+                      <label class="form-control-label">Status </label>
+                    </div>
+                  </div>
+                  <div class='col-3 col-sm-5'>
+                    <p>
+                      Incomplete
+                    </p>
+                  </div>
+                  <div class='col-3 col-sm-5'>
+                    <p *ngIf="(item.assignmentStatus == 1 || item.assignmentStatus == 2)">
+                      <button type="button" (click)="openAssignmentModal(item.assignmentId,item.userAssignmentId)"
+                        class="btn btn-primary ripple light pull-right"><i class="icofont icofont-book-alt"></i>Pending
+                        Assignment</button>
+                    </p>
+                    <p *ngIf="(item.assignmentStatus == 3 || item.assignmentStatus == 4 || item.assignmentStatus == 5)">
+                      <button class="btn btn-info ripple light pull-right"><i
+                          class="icofont icofont-info-square"></i>Already Submitted</button>
+                    </p>
+                    <p *ngIf="(item.assignmentStatus == 7)">
+                      <button type="button" (click)="openAssignmentModal(item.assignmentId,item.userAssignmentId)"
+                        class="btn btn-danger ripple light pull-right"><i class="icofont icofont-eye-alt"></i>Assignment
+                        Rejected! Try Again</button>
+                    </p>
+                    <p *ngIf="(item.assignmentStatus == 10)">
+                      <button class="btn btn-success ripple light pull-right"><i
+                          class="icofont icofont-check-circled"></i>Your Assignment Successfully Accepted</button>
+                    </p>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </div>
+
+        </ngb-accordion>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<app-modal-animation [modalID]="'AssignmentModel'" [modalClass]="'md-effect-1'">
+  <h3>Submit Assignment</h3>
+  <div>
+    <br>
+    <br>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+      <div class='row'>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <textarea name="feedback" class="form-control" formControlName="feedback"></textarea>
+            <small class="messages text-danger" *ngIf="form.controls.feedback.errors?.required 
+        && (form.controls.feedback.dirty || form.controls.feedback.touched) || 
+        (submitted && form.controls.feedback.errors?.required)">Feedback Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Feedback</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <select class="select" formControlName="assignmentStatus" class="form-control form-control-Inverse ">
+              <!-- <option *ngFor="let data of states" [ngValue]="data.assignmentStatus">{{data.name}}</option> -->
+              <option value="">Select Status</option>
+              <option [ngValue]="1">Completed</option>
+              <option [ngValue]="2">Not Completed</option>
+              <option [ngValue]="3">Need To Discuss</option>
+              <option [ngValue]="4">Other</option>
+            </select>
+            <small class="messages text-danger" *ngIf="form.controls.assignmentStatus.errors?.required 
+        && (form.controls.assignmentStatus.dirty || form.controls.assignmentStatus.touched) || 
+        (submitted && form.controls.assignmentStatus.errors?.required)">Status Reuired!</small>
+            <span class="form-bar"></span>
+            <span class="form-bar"></span>
+            <label class="float-label">Status</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="card-block">
+            <div class="sub-title">Assignment Attachments</div>
+            <input type="file" name="files[]" id="files" multiple="multiple" (change)="uploadFiles($event)">
+            <!-- <span class="form-bar"></span>
+            <label class="float-label">Attachments</label> -->
+          </div>
+        </div>
+
+
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary ripple light pull-right"> Submit </button>
+        </div>
+      </div>
+    </form>
+
+    <button (click)="closeMyModal($event)" class="btn btn-primary md-close">Close</button>
+  </div>
+  <button (click)="closeMyModal($event)" aria-label="Close" class="md-close-btn"><i
+      class="icofont icofont-ui-close"></i></button>
+</app-modal-animation>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

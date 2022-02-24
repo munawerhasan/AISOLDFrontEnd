@@ -1,0 +1,146 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Employee List'">
+        <div class="dt-responsive" *ngIf="data">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search"
+                    placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm table-styling  table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery"
+              #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+                <tr class="table-primary">
+                  <th>#</th>
+                  <th>
+                    <mfDefaultSorter by="firstName">Emp Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="userName">UserName</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="employeeCode">Emp Code</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="masterEmployeeId">Emp Type</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="masterDepartmentId">Department</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="joiningDate">Joining Date</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="joiningDate">Appointment Date</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="activeStatus">Status</mfDefaultSorter>
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of mf.data; let i = index">
+                  <td> {{i+1}}</td>
+                  <td>{{item.firstName+" "+item.middleName+" "+item.lastName}}</td>
+                  <td>{{item.userName}}</td>
+                  <td>{{item.employeeCode}}</td>
+                  <td>{{item.masterEmployeeName}}</td>
+                  <td>{{item.masterDepartmentName}}</td>
+                  <td>{{item.joiningDate | date}}</td>
+                  <td>{{item.appointmentDate | date}}</td>
+                  <td>{{item.activeStatus | StatusConversion}}</td>
+                  <!-- <td> <img class="img-30" src="assets/images/student/student-default.png" alt="EmployeeImagee"></td> -->
+                  <td>
+                    <a [routerLink]="['/employee/update', item.employeeId]"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a>
+                    <a href="javascript:" (click)="deleteRecord(item.employeeId)"><i class="fa fa-trash f-16"></i></a>&#160;&#160;
+                    <a href="javascript:" (click)="openMyModal(item.userId)"><i class="icon-lock f-16 m-r-15"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="table-primary">
+                  <th>Emp Name</th>
+                  <th>UserName</th>
+                  <th>Emp Code</th>
+                  <th>Emp Type</th>
+                  <th>Department</th>
+                  <th>Joining Date</th>
+                  <th>Appointment Date</th>
+                  <th>Status</th>
+                  <!-- <th>Photo</th> -->
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td colspan="11">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<app-modal-animation [modalID]="'ResetPasswordModelId'" [modalClass]="'md-effect-1'">
+  <h3>Change Password</h3>
+  <div>
+    <br>
+    <br>
+
+    <form [formGroup]="changePasswordForm">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group form-primary">
+            <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+            <span class="form-bar"></span>
+            <label class="float-label">Password</label>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <button (click)="changePassword()" class="btn btn-primary ripple light pull-right" > Submit </button>
+        </div>
+      </div>
+      
+    </form>
+    
+    <button (click)="closeMyModal($event)" class="btn btn-primary md-close">Close</button>
+  </div>
+  <button (click)="closeMyModal($event)" aria-label="Close" class="md-close-btn"><i class="icofont icofont-ui-close"></i></button>
+</app-modal-animation>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

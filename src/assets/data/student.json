@@ -1,0 +1,407 @@
+[
+    {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      },
+      {
+        "admissionNumber": "AMD20200401",
+        "studentName": "ZAYN SAIFI",
+        "fatherName": "FARMAN ALI",
+        "class": "9th",
+        "age": 21,
+        "admissionDate": "2020/04/25",
+        "fee":"2500"
+      },
+      {
+        "admissionNumber": "AMD20200402",
+        "studentName": "ZOHAN ALI",
+        "fatherName": "IMRAN ALI",
+        "class": "10th",
+        "age": 22,
+        "admissionDate": "2020/04/25",
+        "fee":"3000"
+      },
+      {
+        "admissionNumber": "AMD20200403",
+        "studentName": "ASHWERAH",
+        "fatherName": "IMRAN ALI",
+        "class": "11th",
+        "age": 23,
+        "admissionDate": "2020/04/25",
+        "fee":"3500"
+      }
+]

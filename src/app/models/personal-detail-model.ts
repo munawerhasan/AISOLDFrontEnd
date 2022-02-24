@@ -1,0 +1,32 @@
+export class PersonalDetailModel {
+    personalDetailId: number;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    image: string;
+    email: string;
+    dob: string;
+    gender: number;
+    maritalStatus: number;
+    anniversaryDate: Date;
+    religion: number;
+    castCategory: number;
+    nationality: number;
+    bloodGroup: number;
+    handicapStatus: number;
+    medicalCondition: string;
+    uidType: number;
+    uidNumber: string;
+    countryId: number;
+    stateId: number;
+    city: string;
+    pinCode: string;
+    address1: string;
+    address2: string;
+    phoneNumber: string;
+    activeStatus: number;
+    createdByUserId: number;
+    updatedByUserId: number;
+    createdDate: string;
+    updatedDate: string;
+}

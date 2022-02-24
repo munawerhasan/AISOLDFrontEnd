@@ -1,0 +1,92 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Master Section Detail</h5>
+        </div>
+        <div class="card-block">
+
+          <div class="form-group form-default">
+            <input type="text" name="subjectName" class="form-control" formControlName="subjectName" required="">
+            <small class="messages text-danger" *ngIf="form.controls.subjectName.errors?.required 
+            && (form.controls.subjectName.dirty || form.controls.subjectName.touched) || 
+            (submitted && form.controls.subjectName.errors?.required)">Subject Name Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Subject Name</label>
+          </div>   
+          
+          <div class="form-group form-default">
+            <input type="text" name="subjectCode" class="form-control" formControlName="subjectCode" required="">
+            <small class="messages text-danger" *ngIf="form.controls.subjectCode.errors?.required 
+            && (form.controls.subjectCode.dirty || form.controls.subjectCode.touched) || 
+            (submitted && form.controls.subjectCode.errors?.required)">Subject Code Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Subject Code Required</label>
+          </div>
+
+          <div class="form-group form-default">
+            <select class="select" formControlName="marksType" class="form-control form-control-Inverse ">
+              <!-- <option *ngFor="let data of states" [ngValue]="data.marksType">{{data.marksType}}</option> -->
+              <option value="">Select Marks Type</option>
+              <option [ngValue]="1">Numeric</option>
+              <option [ngValue]="2">Grade</option>               
+            </select>
+            <small class="messages text-danger" *ngIf="form.controls.marksType.errors?.required 
+            && (form.controls.marksType.dirty || form.controls.marksType.touched) || 
+            (submitted && form.controls.marksType.errors?.required)">Marks Type!</small>
+            <span class="form-bar"></span>
+            <span class="form-bar"></span>
+            <label class="float-label">Marks Type</label>
+          </div>
+
+          <div class="form-group form-default">
+            <select class="select" formControlName="subjectType" class="form-control form-control-Inverse ">
+              <!-- <option *ngFor="let data of states" [ngValue]="data.subjectType">{{data.subjectType}}</option> -->
+              <option value="">Select Subject Type</option>
+              <option [ngValue]="1">Co-Scholastic</option>
+              <option [ngValue]="2">Scholastic</option>               
+            </select>
+            <small class="messages text-danger" *ngIf="form.controls.subjectType.errors?.required 
+            && (form.controls.subjectType.dirty || form.controls.subjectType.touched) || 
+            (submitted && form.controls.subjectType.errors?.required)">Subject Type!</small>
+            <span class="form-bar"></span>
+            <span class="form-bar"></span>
+            <label class="float-label">Select Subject Type</label>
+          </div>
+
+          <div class="form-group form-default">
+            <input type="number" name="displayOrder" class="form-control" formControlName="displayOrder" required="">
+            <small class="messages text-danger" *ngIf="form.controls.displayOrder.errors?.required 
+            && (form.controls.displayOrder.dirty || form.controls.displayOrder.touched) || 
+            (submitted && form.controls.displayOrder.errors?.required)">DisplayOrder Reuired!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Display Order</label>
+          </div>
+          <div class="form-group form-default">
+            <select class="select" formControlName="activeStatus" class="form-control form-control-Inverse ">
+              <!-- <option *ngFor="let data of states" [ngValue]="data.activeStatus">{{data.name}}</option> -->
+              <option value="">Select Status</option>
+              <option [ngValue]="1">Active</option>
+              <option [ngValue]="2">InActive</option>
+              <option [ngValue]="3">Suspended</option>
+              <option [ngValue]="4">Deleted</option>
+            </select>
+            <small class="messages text-danger" *ngIf="form.controls.activeStatus.errors?.required 
+            && (form.controls.activeStatus.dirty || form.controls.activeStatus.touched) || 
+            (submitted && form.controls.activeStatus.errors?.required)">Status Reuired!</small>
+            <span class="form-bar"></span>
+            <span class="form-bar"></span>
+            <label class="float-label">Status</label>
+          </div> 
+          
+          <div class="form-group form-default">
+            <button type="submit" class="btn btn-primary ripple light pull-right" > Submit </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,169 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Subject Teacher Mapping'">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+          <div class="tab-pane active">
+            <div class="row">
+              <div  class="col-md-12">
+                <div class="form-group form-default">
+
+                <ng-autocomplete
+                [data]="employeeData"
+                [searchKeyword]="keyword"
+                placeHolder="Enter the Employee Name"
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate"
+                (selected)='onSelectEmployee($event)'
+                >
+              </ng-autocomplete>
+            </div>
+              <ng-template #itemTemplate let-item>
+                <div class="item">
+                  <img class="img-30" src="assets/images/avatar-4.jpg" height="25"> &nbsp;
+                  <span>{{item.name}}</span> &nbsp; | &nbsp;
+                  <small>{{item.userName}}</small>
+                </div>
+              </ng-template>
+            
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group form-default">
+                  <select class="select" formControlName="masterClassId" (change)="onSelectClass($event)" class="form-control form-control-Inverse">
+                    <option [ngValue]="null">Select Class</option>
+                    <option *ngFor="let data of classData" [value]="data.masterClassId">{{data.name}}</option>
+                  </select>
+                  <small class="messages text-danger" *ngIf="form.controls.masterClassId.errors?.required 
+                            && (form.controls.masterClassId.dirty || form.controls.masterClassId.touched) || 
+                            (submitted && form.controls.masterClassId.errors?.required)">Class Required</small>
+                  <span class="form-bar"></span>
+                  <!-- <label class="float-label">Class</label> -->
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group form-default">
+                  <select class="select" formControlName="masterSectionId" (change)="onSelectSection($event)" class="form-control form-control-Inverse">
+                    <option [ngValue]="null">Select Section</option>
+                    <option *ngFor="let data of sectionData" [value]="data.masterSectionId">{{data.name}}</option>
+                  </select>
+                  <small class="messages text-danger" *ngIf="form.controls.masterSectionId.errors?.required 
+                            && (form.controls.masterSectionId.dirty || form.controls.masterSectionId.touched) || 
+                            (submitted && form.controls.masterSectionId.errors?.required)">Section Required</small>
+                  <span class="form-bar"></span>
+                  <!-- <label class="float-label">Section</label> -->
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group form-default">
+                  <select class="select" formControlName="masterSubjectId" class="form-control form-control-Inverse">
+                    <option [ngValue]="null">Select Subject</option>
+                    <option *ngFor="let data of subjectData" [value]="data.masterSubjectId">{{data.subjectName}}</option>
+                  </select>
+                  <small class="messages text-danger" *ngIf="form.controls.masterSubjectId.errors?.required 
+                            && (form.controls.masterSubjectId.dirty || form.controls.masterSubjectId.touched) || 
+                            (submitted && form.controls.masterSubjectId.errors?.required)">Subject Required</small>
+                  <span class="form-bar"></span>
+                  <!-- <label class="float-label">Subject</label> -->
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group form-default">
+                  <button type="submit"  class="btn btn-primary ripple light pull-right"> Add Mapping </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="dt-responsive" *ngIf="data">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search"
+                    placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm table-styling  table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery"
+              #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+                <tr class="table-primary">
+                  <th>
+                    <mfDefaultSorter by="teacherName">Teacher Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="className">Class Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="sectionName">Section Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="subjectName">Subject Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of mf.data">
+                  <td>{{item.teacherName}}</td>
+                  <td>{{item.className}}</td>
+                  <td>{{item.sectionName}}</td>
+                  <td>{{item.subjectName}}</td>
+                  <td>
+                    <a href="javascript:" (click)="deleteRecord(item.subjectTeacherMappingId)"><i class="fa fa-trash f-16"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="table-primary">
+                  <th>Teacher Name</th>
+                  <th>Class Name</th>
+                  <th>Section Name</th>
+                  <th>Subject Name</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td colspan="6">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

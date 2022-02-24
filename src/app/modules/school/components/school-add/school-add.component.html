@@ -1,0 +1,413 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <section id="ngx" class="ngx-form-wizard">
+        <app-card [title]="'Add School Detail'">
+        <div class="board">
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+
+
+
+
+            <div class="tab-pane active">
+              <h4 class="head text-center">School Detail</h4>
+              <br />
+              <br />
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="schoolName" class="form-control" formControlName="schoolName">
+                        <small class="messages text-danger" *ngIf="form.controls.schoolName.errors?.required 
+            && (form.controls.schoolName.dirty || form.controls.schoolName.touched) || 
+            (submitted && form.controls.schoolName.errors?.required)">School Name Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">School Name</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="schoolCode" class="form-control" formControlName="schoolCode">
+                        <small class="messages text-danger" *ngIf="form.controls.schoolCode.errors?.required 
+            && (form.controls.schoolCode.dirty || form.controls.schoolCode.touched) || 
+            (submitted && form.controls.schoolCode.errors?.required)">School Code Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">School Code</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="schoolEmail" class="form-control" formControlName="schoolEmail"
+                          >
+                        <span class="form-bar"></span>
+                        <label class="float-label">School Email</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="registrationNumber" class="form-control"
+                          formControlName="registrationNumber">
+                          <small class="messages text-danger" *ngIf="form.controls.registrationNumber.errors?.required 
+                          && (form.controls.registrationNumber.dirty || form.controls.registrationNumber.touched) || 
+                          (submitted && form.controls.registrationNumber.errors?.required)">registration Number Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Registration Number</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="tagline" class="form-control" formControlName="tagline">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Tagline</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="description" class="form-control" formControlName="description">
+                      
+                        <span class="form-bar"></span>
+                        <label class="float-label">Description</label>
+                      </div>
+                    </div>
+                  </div>
+                
+              
+            </div>
+            <div class="tab-pane active">
+              <h4 class="head text-center">Address Detail</h4>
+              <br />
+              <br />
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="address1" class="form-control" formControlName="address1">
+                        <small class="messages text-danger" *ngIf="form.controls.address1.errors?.required 
+            && (form.controls.address1.dirty || form.controls.address1.touched) || 
+            (submitted && form.controls.address1.errors?.required)">Address Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Address 1</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="address2" class="form-control" formControlName="address2">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Address 2</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="city" class="form-control" formControlName="city">
+                        <small class="messages text-danger" *ngIf="form.controls.city.errors?.required 
+            && (form.controls.city.dirty || form.controls.city.touched) || 
+            (submitted && form.controls.city.errors?.required)">City Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">City</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <select class="select" formControlName="stateId" class="form-control form-control-Inverse"
+                          >
+                          <!-- <option value="null"> -- Select State -- </option> -->
+                          <option *ngFor="let data of states" [ngValue]="data.stateId">{{data.name}}</option>
+                        </select>
+                        <small class="messages text-danger" *ngIf="form.controls.stateId.errors?.required 
+            && (form.controls.stateId.dirty || form.controls.stateId.touched) || 
+            (submitted && form.controls.stateId.errors?.required)">State Reuired</small>
+                        <span class="form-bar"></span>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Select State</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="pinCode"  class="form-control" formControlName="pinCode">
+                        <small class="messages text-danger" *ngIf="form.controls.pinCode.errors?.required 
+                        && (form.controls.pinCode.dirty || form.controls.pinCode.touched) || 
+                        (submitted && form.controls.pinCode.errors?.required)">pinCode Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Pin Code</label>
+                      </div>
+                    </div>
+
+                  </div>
+              
+              
+            </div>
+            <div class="tab-pane active">
+              <h4 class="head text-center">Owner Detail</h4>
+              <br />
+              <br />
+          
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="ownerName"  class="form-control" formControlName="ownerName">
+                        <!-- <small class="form-text text-danger" *ngIf="!ownerName.valid && (ownerName.dirty || ownerName.touched)">This field is required!</small> -->
+                        <small class="messages text-danger" *ngIf="form.controls.ownerName.errors?.required 
+            && (form.controls.ownerName.dirty || form.controls.ownerName.touched) || 
+            (submitted && form.controls.ownerName.errors?.required)">Owner Name Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Owner Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="ownerContactNo"  class="form-control"
+                          formControlName="ownerContactNo">
+                        <small class="messages text-danger" *ngIf="form.controls.ownerContactNo.errors?.required 
+            && (form.controls.ownerContactNo.dirty || form.controls.ownerContactNo.touched) || 
+            (submitted && form.controls.ownerContactNo.errors?.required)">Owner Contact No Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Contact No</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="ownerEmail"  class="form-control" formControlName="ownerEmail">
+                        <small class="messages text-danger" *ngIf="form.controls.ownerEmail.errors?.required 
+            && (form.controls.ownerEmail.dirty || form.controls.ownerEmail.touched) || 
+            (submitted && form.controls.ownerEmail.errors?.required)">Owner Email Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Owner Email</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <select class="select" formControlName="uidType"
+                          class="form-control form-control-Inverse ">
+                          <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+                          <option [ngValue]="1">Aadhaar</option>
+                          <option [ngValue]="2">Voter ID</option>
+                          <option [ngValue]="3">PAN</option>
+                          <option [ngValue]="4">Driving License</option>
+                        </select>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Select UID Type</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="uidNumber" class="form-control" formControlName="uidNumber">
+                        <small class="messages text-danger" *ngIf="form.controls.uidNumber.errors?.required 
+                        && (form.controls.uidNumber.dirty || form.controls.uidNumber.touched) || 
+                        (submitted && form.controls.uidNumber.errors?.required)">uidNumber Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">UID Number</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="date" name="dob" class="form-control" formControlName="dob">
+                        <small class="messages text-danger" *ngIf="form.controls.dob.errors?.required 
+                        && (form.controls.dob.dirty || form.controls.dob.touched) || 
+                        (submitted && form.controls.dob.errors?.required)">DOB Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Date Of Birth</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary form-radio">
+                        <div class="radio radio-inline">
+                          <label>
+                            <input type="radio" [value]="1" name="gender" formControlName="gender">
+                            <i class="helper"></i>Male
+                          </label>
+                        </div>
+                        <div class="radio radio-inline">
+                          <label>
+                            <input type="radio" [value]="2" name="gender" formControlName="gender">
+                            <i class="helper"></i>Female
+                          </label>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                
+            
+            </div>
+
+            <div class="tab-pane active">
+            <h4 class="head text-center">Bank Detail</h4>
+              <br />
+              <br />
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="bankName" class="form-control" formControlName="bankName">
+                        <small class="messages text-danger" *ngIf="form.controls.bankName.errors?.required 
+                        && (form.controls.bankName.dirty || form.controls.bankName.touched) || 
+                        (submitted && form.controls.bankName.errors?.required)">bank Name Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Bank Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="ifscCode"  class="form-control" formControlName="ifscCode">
+                        <small class="messages text-danger" *ngIf="form.controls.ifscCode.errors?.required 
+                        && (form.controls.ifscCode.dirty || form.controls.ifscCode.touched) || 
+                        (submitted && form.controls.ifscCode.errors?.required)">ifsc Code Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">IFSC Code</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="accountNo" class="form-control" formControlName="accountNo">
+                        <small class="messages text-danger" *ngIf="form.controls.accountNo.errors?.required 
+                        && (form.controls.accountNo.dirty || form.controls.accountNo.touched) || 
+                        (submitted && form.controls.accountNo.errors?.required)">account No Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Account Number</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="bankAddress"  class="form-control"
+                          formControlName="bankAddress">
+                          <small class="messages text-danger" *ngIf="form.controls.bankAddress.errors?.required 
+                          && (form.controls.bankAddress.dirty || form.controls.bankAddress.touched) || 
+                          (submitted && form.controls.bankAddress.errors?.required)">bank Address Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Bank Address</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="paymentLink"  class="form-control"
+                          formControlName="paymentLink">
+                          <small class="messages text-danger" *ngIf="form.controls.paymentLink.errors?.required 
+                          && (form.controls.paymentLink.dirty || form.controls.paymentLink.touched) || 
+                          (submitted && form.controls.paymentLink.errors?.required)">Payment Link Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Payment Link</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <textarea class="form-control"  name="additionalInfo"
+                          formControlName="additionalInfo"></textarea>
+                          <small class="messages text-danger" *ngIf="form.controls.additionalInfo.errors?.required 
+                          && (form.controls.additionalInfo.dirty || form.controls.additionalInfo.touched) || 
+                          (submitted && form.controls.additionalInfo.errors?.required)">Additional Info Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Additional Info</label>
+                      </div>
+                    </div>
+                  </div>
+                
+              
+            </div>
+
+            <div class="tab-pane active">
+              <h4 class="head text-center">User Detail</h4>
+                <br />
+                <br />
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="smsUserId"  class="form-control" formControlName="smsUserId">
+                        <small class="messages text-danger" *ngIf="form.controls.smsUserId.errors?.required 
+                && (form.controls.smsUserId.dirty || form.controls.smsUserId.touched) || 
+                (submitted && form.controls.smsUserId.errors?.required)">Ums User Id Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Ums User Id </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="password"  class="form-control" formControlName="password">
+                        <small class="messages text-danger" *ngIf="form.controls.password.errors?.required 
+                && (form.controls.password.dirty || form.controls.password.touched) || 
+                (submitted && form.controls.password.errors?.required)">Password Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Password </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="senderId"  class="form-control" formControlName="senderId">
+                        <small class="messages text-danger" *ngIf="form.controls.senderId.errors?.required 
+                && (form.controls.senderId.dirty || form.controls.senderId.touched) || 
+                (submitted && form.controls.senderId.errors?.required)">senderId Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">senderId </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                         <input type="text" name="apiKey" class="form-control" formControlName="apiKey">
+                        <small class="messages text-danger" *ngIf="form.controls.apiKey.errors?.required 
+                && (form.controls.apiKey.dirty || form.controls.apiKey.touched) || 
+                (submitted && form.controls.apiKey.errors?.required)">apiKey Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">apiKey </label>
+                      </div>
+                    </div>
+                  </div>
+                
+              
+            </div>
+            <div class="tab-pane active">
+              <h4 class="head text-center">Account Detail</h4>
+                <br />
+                <br />
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="formMailId"  class="form-control" formControlName="formMailId">
+                        <small class="messages text-danger" *ngIf="form.controls.formMailId.errors?.required 
+                && (form.controls.formMailId.dirty || form.controls.formMailId.touched) || 
+                (submitted && form.controls.formMailId.errors?.required)">formMailId Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Form MailId </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="userId"  class="form-control" formControlName="userId">
+                        <small class="messages text-danger" *ngIf="form.controls.userId.errors?.required 
+                && (form.controls.userId.dirty || form.controls.userId.touched) || 
+                (submitted && form.controls.userId.errors?.required)">User Id Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">User Id </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group form-primary">
+                        <input type="text" name="password"  class="form-control" formControlName="password">
+                        <small class="messages text-danger" *ngIf="form.controls.password.errors?.required 
+                && (form.controls.password.dirty || form.controls.password.touched) || 
+                (submitted && form.controls.password.errors?.required)">Password Reuired</small>
+                        <span class="form-bar"></span>
+                        <label class="float-label">Password Id </label>
+                      </div>
+                    </div>
+                  </div>
+              
+            </div>
+            <div class="form-group form-default">
+              <button  class="btn btn-primary ripple light pull-right" (click)="schoolList()" style="margin-top: 8px;"> View </button>
+            </div>
+            <div class="form-group form-default">
+              <button type="submit"  class="btn btn-primary ripple light pull-right" style="margin-right: 5px;"> Submit </button>
+            </div>
+
+
+          </form>
+        </div>
+        </app-card>
+      </section>
+    </div>
+  </div>
+</div>

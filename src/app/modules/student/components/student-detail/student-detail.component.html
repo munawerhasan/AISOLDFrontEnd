@@ -1,0 +1,225 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="tab-pane active">
+    <h4 class="head text-center">{{title}}</h4>
+    <br />
+    <div class='row'>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="firstName" class="form-control" formControlName="firstName">
+          <small class="messages text-danger" *ngIf="form.controls.firstName.errors?.required 
+          && (form.controls.firstName.dirty || form.controls.firstName.touched) || 
+          (submitted && form.controls.firstName.errors?.required)">First Name Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">First Name</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="lastName" class="form-control" formControlName="lastName">
+          <small class="messages text-danger" *ngIf="form.controls.lastName.errors?.required 
+          && (form.controls.lastName.dirty || form.controls.lastName.touched) || 
+          (submitted && form.controls.lastName.errors?.required)">Last Name Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Last Name</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="middleName" class="form-control" formControlName="middleName">
+          <small class="messages text-danger" *ngIf="form.controls.middleName.errors?.required 
+          && (form.controls.middleName.dirty || form.controls.middleName.touched) || 
+          (submitted && form.controls.middleName.errors?.required)">Middle Name Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Middle Name</label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="admissionNumber" class="form-control" formControlName="admissionNumber">
+          <small class="messages text-danger" *ngIf="form.controls.admissionNumber.errors?.required 
+          && (form.controls.admissionNumber.dirty || form.controls.admissionNumber.touched) || 
+          (submitted && form.controls.admissionNumber.errors?.required)">Admission Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Admission Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="formNumber" class="form-control" formControlName="formNumber">
+          <small class="messages text-danger" *ngIf="form.controls.formNumber.errors?.required 
+          && (form.controls.formNumber.dirty || form.controls.formNumber.touched) || 
+          (submitted && form.controls.formNumber.errors?.required)">Form Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Form Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="samagraNumber" class="form-control" formControlName="samagraNumber">
+          <small class="messages text-danger" *ngIf="form.controls.samagraNumber.errors?.required 
+          && (form.controls.samagraNumber.dirty || form.controls.samagraNumber.touched) || 
+          (submitted && form.controls.samagraNumber.errors?.required)">Samagra Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">samagra Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="text" name="childNumber" class="form-control" formControlName="childNumber">
+          <small class="messages text-danger" *ngIf="form.controls.childNumber.errors?.required 
+          && (form.controls.childNumber.dirty || form.controls.childNumber.touched) || 
+          (submitted && form.controls.childNumber.errors?.required)">Child Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Child Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="number" name="rollNumber" class="form-control" formControlName="rollNumber">
+          <small class="messages text-danger" *ngIf="form.controls.rollNumber.errors?.required 
+          && (form.controls.rollNumber.dirty || form.controls.rollNumber.touched) || 
+          (submitted && form.controls.rollNumber.errors?.required)">Roll Number Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Roll Number</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <input type="date" name="joiningDate" class="form-control" formControlName="joiningDate">
+          <small class="messages text-danger" *ngIf="form.controls.joiningDate.errors?.required 
+          && (form.controls.joiningDate.dirty || form.controls.joiningDate.touched) || 
+          (submitted && form.controls.joiningDate.errors?.required)">Joining Date Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Joinin gDate</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="sibling" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">one Sibling</option>
+            <option [ngValue]="2">Two Sibling</option>
+            <option [ngValue]="3">Three Sibling</option>
+            <option [ngValue]="4">Four Sibling</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.sibling.errors?.required 
+          && (form.controls.sibling.dirty || form.controls.sibling.touched) || 
+          (submitted && form.controls.sibling.errors?.required)">sibling Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">sibling</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="scholerType" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Morning</option>
+            <option [ngValue]="2">Evening</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.scholerType.errors?.required 
+          && (form.controls.scholerType.dirty || form.controls.scholerType.touched) || 
+          (submitted && form.controls.scholerType.errors?.required)">Scholer Type Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Scholer Type</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="promotionStatus" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Promoted</option>
+            <option [ngValue]="2">New</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.promotionStatus.errors?.required 
+          && (form.controls.promotionStatus.dirty || form.controls.promotionStatus.touched) || 
+          (submitted && form.controls.promotionStatus.errors?.required)">Promotion Status Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Promotion Status</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="workFlowStatus" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">WorkFlow 1</option>
+            <option [ngValue]="2">WorkFlow 2</option>
+            <option [ngValue]="3">WorkFlow 3</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.workFlowStatus.errors?.required 
+          && (form.controls.workFlowStatus.dirty || form.controls.workFlowStatus.touched) || 
+          (submitted && form.controls.workFlowStatus.errors?.required)">WorkFlow Status Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">WorkFlow Status</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="referBy" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Inertnal</option>
+            <option [ngValue]="2">External</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.referBy.errors?.required 
+          && (form.controls.referBy.dirty || form.controls.referBy.touched) || 
+          (submitted && form.controls.referBy.errors?.required)">ReferBy Status Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">ReferBy Status</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="counselByUserId" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Inertnal</option>
+            <option [ngValue]="2">External</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.counselByUserId.errors?.required 
+          && (form.controls.counselByUserId.dirty || form.controls.counselByUserId.touched) || 
+          (submitted && form.controls.counselByUserId.errors?.required)">Counseler Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Counseler Status</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-default">
+          <select class="select" formControlName="activeStatus" class="form-control form-control-Inverse ">
+            <!-- <option [ngValue]="null">-- Select UID Type --</option> -->
+            <option [ngValue]="1">Inertnal</option>
+            <option [ngValue]="2">External</option>
+            <option [ngValue]="3">Other</option>
+          </select>
+          <small class="messages text-danger" *ngIf="form.controls.activeStatus.errors?.required 
+          && (form.controls.activeStatus.dirty || form.controls.activeStatus.touched) || 
+          (submitted && form.controls.activeStatus.errors?.required)">Status Required</small>
+          <span class="form-bar"></span>
+          <label class="float-label">Status</label>
+        </div>
+      </div>
+
+
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary ripple light pull-right" > Submit </button>
+      </div>
+    </div>
+  </div>
+</form>

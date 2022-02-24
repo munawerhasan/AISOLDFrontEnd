@@ -1,0 +1,111 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5> Class Detail</h5>
+        </div>
+        <div class="card-block">
+          <div class='row'>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="userName" class="form-control" formControlName="userName">
+                <small class="messages text-danger" *ngIf="form.controls.userName.errors?.required 
+                && (form.controls.userName.dirty || form.controls.userName.touched) || 
+                (submitted && form.controls.userName.errors?.required)">User Name Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">User Name</label>
+              </div>
+            </div>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="email" class="form-control" formControlName="email">
+                <small class="messages text-danger" *ngIf="form.controls.email.errors?.required 
+                && (form.controls.email.dirty || form.controls.email.touched) || 
+                (submitted && form.controls.email.errors?.required)">Email Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Email</label>
+              </div>
+            </div>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="password" class="form-control" formControlName="password">
+                <small class="messages text-danger" *ngIf="form.controls.password.errors?.required 
+                && (form.controls.password.dirty || form.controls.password.touched) || 
+                (submitted && form.controls.password.errors?.required)">Password Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Password</label>
+              </div>
+            </div>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="confirmPassword" class="form-control" formControlName="confirmPassword">
+                <small class="messages text-danger" *ngIf="form.controls.confirmPassword.errors?.required 
+                && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched) || 
+                (submitted && form.controls.confirmPassword.errors?.required)">confirmPassword Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">confirmPassword</label>
+              </div>
+            </div>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="firstName" class="form-control" formControlName="firstName">
+                <small class="messages text-danger" *ngIf="form.controls.firstName.errors?.required 
+                && (form.controls.firstName.dirty || form.controls.firstName.touched) || 
+                (submitted && form.controls.firstName.errors?.required)">First Name Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">First Name</label>
+              </div>
+            </div>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="lastName" class="form-control" formControlName="lastName">
+                <small class="messages text-danger" *ngIf="form.controls.lastName.errors?.required 
+                && (form.controls.lastName.dirty || form.controls.lastName.touched) || 
+                (submitted && form.controls.lastName.errors?.required)">Last Name Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Last Name</label>
+              </div>
+            </div>
+      
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <input type="text" name="middleName" class="form-control" formControlName="middleName">
+                <small class="messages text-danger" *ngIf="form.controls.middleName.errors?.required 
+                && (form.controls.middleName.dirty || form.controls.middleName.touched) || 
+                (submitted && form.controls.middleName.errors?.required)">Middle Name Required</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Middle Name</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group form-default">
+                <select class="select" formControlName="schoolId" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.schoolId">{{data.name}}</option> -->
+                  <option *ngFor="let data of schools" [ngValue]="data.schoolId">{{data.schoolName + ' - '+ data.schoolCode}}</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.schoolId.errors?.required 
+            && (form.controls.schoolId.dirty || form.controls.schoolId.touched) || 
+            (submitted && form.controls.schoolId.errors?.required)">School Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">School</label>
+              </div>
+            </div>
+      
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary ripple light pull-right" > Submit </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

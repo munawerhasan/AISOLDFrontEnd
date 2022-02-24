@@ -1,0 +1,43 @@
+<div class="board-inner" id="status-buttons">
+    <ul class="nav nav-tabs nav-fill" id="myTab">
+        <div class="liner"></div>
+
+        <li class="active nav-item">
+            <a [ngClass]="(page==='Account Detail')?'nav-link active':'nav-link'" uiSrefActive="active" uiSref="student-detail" data-toggle="tab"
+                title="Account Detail">
+                <span class="round-tabs one">
+                  <h5><i class="icofont icofont-ui-user"></i> Account Detail</h5>
+                </span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [ngClass]="(page==='Student Detail')?'nav-link active':'nav-link'" uiSrefActive="active" uiSref="student-detail" data-toggle="tab" title="Student Detail">
+                <span class="round-tabs two">
+                  <h5><i class="icofont icofont-student"></i> Student Detail</h5>
+                </span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [ngClass]="(page==='Personal Detail')?'nav-link active':'nav-link'" uiSrefActive="active" uiSref="personal-detail" data-toggle="tab" title="Personal Detail">
+                <span class="round-tabs three">
+                  <h5><i class="icofont icofont-briefcase-alt-2"></i> Personal Detail</h5>
+                </span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [ngClass]="(page==='Parent Detail')?'nav-link active':'nav-link'" uiSrefActive="active" uiSref="parent-detail" data-toggle="tab" title="Parent Detail">
+                <span class="round-tabs four">
+                  <h5><i class="feather icon-map"></i> Parent Detail</h5>
+                </span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [ngClass]="(page==='Final')?'nav-link active':'nav-link'" uiSrefActive="active" uiSref="final" data-toggle="tab" title="Completed">
+                <span class="round-tabs five">
+                  <h5><i class="feather icon-airplay"></i> Finished</h5>
+                </span>
+            </a>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</div>

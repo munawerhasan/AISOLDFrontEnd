@@ -1,0 +1,20 @@
+
+<!-- <div *ngIf="session">
+  <app-publisher [session]="session"></app-publisher>
+  <app-subscriber *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
+</div> -->
+
+
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="column has-text-centered">
+          
+          <div class="img-row" *ngIf="session">
+            <app-publisher [session]="session"></app-publisher>
+            <app-subscriber *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

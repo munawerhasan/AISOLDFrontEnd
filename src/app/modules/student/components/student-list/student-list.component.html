@@ -1,0 +1,280 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Student List'">
+        <div class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <label class="form-control form-control-Inverse">Total : <b>{{ data ? data.length : '0' }}</b></label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <select (change)="onSelectClass($event)" class="select" class="form-control form-control-Inverse ">
+                  <option selected [value]=0>Select Class</option>
+                  <option *ngFor="let data of masterClasses" [value]="data.masterClassId">{{data.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <select (change)="onSelectSection($event)" class="select" class="form-control form-control-Inverse ">
+                  <option selected [value]=0>Select Section</option>
+                  <option *ngFor="let data of masterSections" [value]="data.masterSectionId">{{data.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search"
+                    placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-styling table-striped table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery"
+              #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+
+              <thead>
+                <tr class="table-primary">
+                  <th>#</th>
+                  <th>
+                    <mfDefaultSorter by="admissionNumber">Admission No</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="userName">UserName</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="firstName">Student Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="fatherFullName">Father Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="masterClassName">Class-Section</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="rollNumber">Roll No</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="fatherContactNumber">Father Contact</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="activeStatus">Status</mfDefaultSorter>
+                  </th>
+                  <th>
+                    Photo
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of mf.data; let i = index">
+                  <td> {{i+1}}</td>
+                  <td>{{item.admissionNumber}}</td>
+                  <td>{{item.user.userName}}</td>
+                  <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+                  <td>{{item.parentDetail.fatherFullName}}</td>
+                  <td>{{item.masterClassName}}-{{item.masterSectionName}}</td>
+                  <td>{{item.rollNumber}}</td>
+                  <td>{{item.parentDetail.fatherContactNumber}}</td>
+                  <td>{{item.activeStatus | StatusConversion}}</td>
+                  <td>
+                    <!-- <img class="img-30" src="assets/images/student/student-default.png" alt="StudentImagee"> -->
+                  </td>
+                  <td>
+                    <a [routerLink]="['/student/details', item.studentId]"><i
+                        class="fa fa-pencil-square-o f-16 m-r-15"></i></a>
+                    <a href="javascript:" (click)="deleteRecord(item.studentId)"><i
+                        class="fa fa-trash f-16"></i></a>&#160;&#160;&#160;
+                    <a href="javascript:" (click)="openMyModal(item.userId)"><i class="icon-lock f-16 m-r-15"></i></a>
+                    <!-- <a [routerLink]="['/student/profile', item.userId]"><i class="fa fa-eye f-16 m-r-15"></i></a> -->
+                    <a href="javascript:" (click)="openStudentDetailModal(item.userId)"><i
+                        class="fa fa-eye f-16 m-r-15"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="table-primary">
+                  <th>Admission No</th>
+                  <th>UserName</th>
+                  <th>Student Name</th>
+                  <th>Father Name</th>
+                  <th>Class-Section</th>
+                  <th>Roll No</th>
+                  <th>Father Contact</th>
+                  <th>Status</th>
+                  <th>Photo</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td colspan="9">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+
+<app-modal-animation [modalID]="'ResetPasswordModelId'" [modalClass]="'md-effect-1'">
+  <h3>Change Password</h3>
+  <div>
+    <br>
+    <br>
+
+    <form [formGroup]="changePasswordForm">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group form-primary">
+            <input type="text" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+            <span class="form-bar"></span>
+            <label class="float-label">Password</label>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <button (click)="changePassword()" class="btn btn-primary ripple light pull-right"> Submit </button>
+        </div>
+      </div>
+
+    </form>
+
+    <button (click)="closeMyModal($event)" class="btn btn-primary md-close">Close</button>
+  </div>
+  <button (click)="closeMyModal($event)" aria-label="Close" class="md-close-btn"><i
+      class="icofont icofont-ui-close"></i></button>
+</app-modal-animation>
+
+
+<app-modal-animation [modalID]="'ViewStudentModelId'" [modalClass]="'md-effect-1'">
+  <h3>Student Detail</h3>
+  <div>
+    <br>
+    <br>
+
+    <div class="col-xl-12 col-md-12">
+      <div class="card user-card-full">
+        <div *ngIf="studentDetail" class="row m-l-0 m-r-0">
+          <div class="col-sm-5 bg-c-purple user-profile">
+            <div class="card-block text-white">
+              <div class="m-b-25 text-center">
+                <img src="../../../../../../assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+              </div>
+              <div class="col-sm-12">
+                <h6>Login Id : {{studentDetail.user.userName}}</h6>
+              </div>
+              <div class="col-sm-12">
+                <h6>Name : {{studentDetail.firstName}} {{studentDetail.middleName}} {{studentDetail.lastName}}</h6>
+              </div>
+              <div class="col-sm-12">
+                <h6>DOB : {{studentDetail.personalDetail.dob | date: 'dd-MM-yyyy'}} </h6>
+              </div>
+              <div class="col-sm-12">
+                <h6>Gender : {{studentDetail.personalDetail.gender | GenderConversion}}</h6>
+              </div>
+              <div class="col-sm-12">
+                <h6>Class : {{studentDetail.masterClassName}}-{{studentDetail.masterSectionName}}</h6>
+              </div>
+              <div class="col-sm-12">
+                <h6>Roll Number : {{studentDetail.rollNumber}}</h6>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="card-block text-muted">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h6>School Name : {{studentDetail.school.schoolName}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>School Code : {{studentDetail.school.schoolCode}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Admission Number : {{studentDetail.admissionNumber}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Admission Date :{{studentDetail.joiningDate | date: 'dd-MM-yyyy'}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>SRN Number : {{ studentDetail.srnNumber ? studentDetail.srnNumber : 'N/A' }}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Withdrawal Number :{{ studentDetail.withdrawalNumber ? studentDetail.withdrawalNumber : 'N/A' }}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Father Name : {{studentDetail.parentDetail.fatherFullName}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Mother Name : {{studentDetail.parentDetail.motherFullName}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Father Contact : {{studentDetail.parentDetail.fatherContactNumber}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Mother Contact : {{studentDetail.parentDetail.motherContactNumber}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Cast : {{studentDetail.personalDetail.castCategory}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Aadhar Number : {{studentDetail.personalDetail.uidNumber}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Address : {{studentDetail.personalDetail.address1}},{{studentDetail.personalDetail.address2}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>City : {{studentDetail.personalDetail.city}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>Pin Code : {{studentDetail.personalDetail.pinCode}}</h6>
+                </div>
+                <div class="col-sm-12">
+                  <h6>State : {{studentDetail.personalDetail.stateId}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="closeMyModal($event)" class="btn btn-primary md-close">Close</button>
+  </div>
+  <button (click)="closeMyModal($event)" aria-label="Close" class="md-close-btn"><i
+      class="icofont icofont-ui-close"></i></button>
+</app-modal-animation>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

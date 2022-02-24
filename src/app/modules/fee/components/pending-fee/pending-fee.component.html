@@ -1,0 +1,335 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <app-card [title]="'Pending Fee'">
+        <div class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <!-- <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <input class="form-control" placeholder="From" name="dp" (click)="from.toggle()" (ngModelChange)="onSelectFromDate($event)" [(ngModel)]="dateRange"
+                  ngbDatepicker #from="ngbDatepicker">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <input class="form-control" placeholder="To" name="dp" (click)="to.toggle()" (ngModelChange)="onSelectToDate($event)" [(ngModel)]="toDate"
+                  ngbDatepicker #to="ngbDatepicker">
+              </div>
+            </div> -->
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <select (change)="onSelectClass($event)" class="select" class="form-control form-control-Inverse ">
+                  <option selected [value]=0>Select Class</option>
+                  <option *ngFor="let data of masterClasses" [value]="data.masterClassId">{{data.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <select (change)="onSelectSection($event)" class="select" class="form-control form-control-Inverse ">
+                  <option selected [value]=0>Select Section</option>
+                  <option *ngFor="let data of masterSections" [value]="data.masterSectionId">{{data.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <select (change)="onSelectMinDue($event)" class="select" class="form-control form-control-Inverse ">
+                  <option selected [value]=0>Min Due</option>
+                  <option *ngFor="let data of dueDropDownData" [ngValue]="data.name">{{data.value}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <select (change)="onSelectMaxDue($event)" class="select" class="form-control form-control-Inverse ">
+                  <option selected [value]=0>Max Due</option>
+                  <option *ngFor="let data of dueDropDownData" [ngValue]="data.name">{{data.value}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-2">
+              <div>
+                <input type="button" class="btn btn-primary ripple light pull-right" value="Export To Excel" name="Export To Excel" (click)="exportToExcel()">
+              </div>
+            </div>
+            
+            <!-- <div class="col-xs-12 col-sm-12 col-md-4">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search"
+                    placeholder="Search name">
+                </label>
+              </div>
+            </div> -->
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm table-styling  table-bordered full-data-table"
+              [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+              [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+                <tr class="table-primary">
+                  <th>#</th>
+                  <th>
+                    <mfDefaultSorter by="studentName">Student Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="className">Class-Section</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="fatherName">Father Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="motherName">Mother Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="fatherContact">Father Contact</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="feeCategory">Fee Category</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="busStopName">Bus Stop</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="monthName">Month Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="totalDue">Total Due</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="listGenratedDate">List Genrated Date</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="lastDueDate">Last Due Date</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="activeStatus">Status</mfDefaultSorter>
+                  </th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of mf.data; let i = index">
+                  <td> {{i+1}}</td>
+                  <td>{{item.studentName}}</td>
+                  <td>{{item.className}} - {{item.sectionName}}</td>
+                  <td>{{item.fatherName}}</td>
+                  <td>{{item.motherName | ShortenText}}</td>
+                  <td>{{item.fatherContact}}</td>
+                  <td>{{item.feeCategory}}</td>
+                  <td>{{item.busStopName}}</td>
+                  <td>{{item.monthName}}</td>
+                  <td>{{item.totalDue | currency:'INR'}}</td>
+                  <td>{{item.listGenratedDate | date:'medium'}}</td>
+                  <td>{{item.lastDueDate | date:'medium'}}</td>
+                  <td><label
+                      class="label label-{{item.activeStatus === 1 ? 'success':item.activeStatus === 2 ? 'info' : 'danger'}}">{{item.activeStatus | StatusConversion}}</label>
+                  </td>
+                  <!-- <td><a [routerLink]="['/class/update', item.classId]">
+                  <i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="deleteRecord(item.classId)"><i class="fa fa-trash f-16"></i></a></td> -->
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="table-primary">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><b>{{sumOfDue | currency:'INR'}}</b></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="15">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+      </app-card>
+
+      <app-card [title]="'Pending Fee By Month'">
+        <div *ngIf="pendingFeeByGroup" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  Month Name
+                </th>
+                <th>
+                  Count
+                </th>
+                <th>
+                  Total Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pendingFeeByGroup.pendingFeeByMonth; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.sum | currency:'INR'}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="table-primary">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{totalGroupByAmount | currency:'INR'}}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </app-card>
+
+     <app-card [title]="'Pending Fee By Due Amount'">
+        <div *ngIf="pendingFeeByGroup" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                 Due Amount
+                </th>
+                <th>
+                  Count
+                </th>
+                <th>
+                  Total Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pendingFeeByGroup.pendingFeeByAmount; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.sum | currency:'INR'}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="table-primary">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{totalGroupByAmount | currency:'INR'}}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </app-card>
+
+      <app-card [title]="'Pending Fee By Class'">
+        <div *ngIf="pendingFeeByGroup" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  Class Name
+                </th>
+                <th>
+                  Count
+                </th>
+                <th>
+                  Total Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pendingFeeByGroup.pendingFeeByClass; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.sum | currency:'INR'}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="table-primary">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{totalGroupByAmount | currency:'INR'}}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </app-card>
+
+      <app-card [title]="'Pending Fee By Class Section'">
+        <div *ngIf="pendingFeeByGroup" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  Class Name
+                </th>
+                <th>
+                  Count
+                </th>
+                <th>
+                  Total Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pendingFeeByGroup.pendingFeeByClassSection; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.sum | currency:'INR'}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="table-primary">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{totalGroupByAmount | currency:'INR'}}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

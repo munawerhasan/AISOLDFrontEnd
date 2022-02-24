@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\shared",
+    "\\app\\shared\\pipes",
+    "\\app\\validators"
+  ],
+  "SelectedNode": "\\app\\validators\\validations.validator.ts",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,62 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5> Submit Assignment</h5>
+        </div>
+        <div class="card-block">
+          <div class='row'>
+
+            <input type="hidden" formControlName="assignmentId">
+
+            <div class="col-md-12">
+              <div class="form-group form-default">
+                <textarea name="feedback" class="form-control" formControlName="feedback"></textarea>
+                <small class="messages text-danger" *ngIf="form.controls.feedback.errors?.required 
+            && (form.controls.feedback.dirty || form.controls.feedback.touched) || 
+            (submitted && form.controls.feedback.errors?.required)">Feedback Required!</small>
+                <span class="form-bar"></span>
+                <label class="float-label">Feedback</label>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group form-default">
+                <select class="select" formControlName="assignmentStatus" class="form-control form-control-Inverse ">
+                  <!-- <option *ngFor="let data of states" [ngValue]="data.assignmentStatus">{{data.name}}</option> -->
+                  <option value="">Select Status</option>
+                  <option [ngValue]="1">Completed</option>
+                  <option [ngValue]="2">Not Completed</option>
+                  <option [ngValue]="3">Need To Discuss</option>
+                  <option [ngValue]="4">Other</option>
+                </select>
+                <small class="messages text-danger" *ngIf="form.controls.assignmentStatus.errors?.required 
+            && (form.controls.assignmentStatus.dirty || form.controls.assignmentStatus.touched) || 
+            (submitted && form.controls.assignmentStatus.errors?.required)">Status Reuired!</small>
+                <span class="form-bar"></span>
+                <span class="form-bar"></span>
+                <label class="float-label">Status</label>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="card-block">
+                <div class="sub-title">Assignment Attachments</div>
+                <input type="file" name="files[]" id="files" multiple="multiple" (change)="uploadFiles($event)">
+                <!-- <span class="form-bar"></span>
+                <label class="float-label">Attachments</label> -->
+              </div>
+            </div>
+
+
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary ripple light pull-right"> Submit </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

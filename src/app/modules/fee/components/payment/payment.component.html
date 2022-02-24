@@ -1,0 +1,266 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <app-card [title]="'Payment Collection'">
+        <div class="dt-responsive" *ngIf="data">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-4">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-4">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search" placeholder="Search name">
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-4">
+              <div>
+                <input type="button" class="btn btn-primary ripple light pull-right" value="Export To Excel" name="Export To Excel" (click)="exportToExcel()">
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm table-styling  table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+              <tr class="table-primary">
+                <th>#</th>
+                <th>
+                  <mfDefaultSorter  by="studentName">Student Name</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="className">Class-Section</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="fatherName">Father Name</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="motherName">Mother Name</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="fatherContact">Father Contact</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="monthName">Month Name</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="receiptId">Receipt Id</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="paymentMode">Payment Mode</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="totalAmount">Total Amount</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="discount">Discount</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="netAmount">Net Amount</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="paidAmount">Paid Amount</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="due">Due</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="advance">Advance</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter  by="receiptBy">Receipt By</mfDefaultSorter>
+                </th>
+              </tr>
+              <tr>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of mf.data; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.studentName}}</td>
+                <td>{{item.className}} - {{item.sectionName}}</td>
+                <td>{{item.fatherName}}</td>
+                <td>{{item.motherName | ShortenText}}</td>
+                <td>{{item.fatherContact}}</td>  
+                <td>{{item.monthName}}</td>  
+                <td>{{item.receiptId}}</td>    
+                <td>{{item.paymentMode}}</td>   
+                <td>{{item.totalAmount | currency:'INR'}}</td>            
+                <td>{{item.discount | currency:'INR'}}</td>    
+                <td>{{item.netAmount | currency:'INR'}}</td>    
+                <td>{{item.paidAmount | currency:'INR'}}</td>
+                <td>{{item.due | currency:'INR'}}</td> 
+                <td>{{item.advance | currency:'INR'}}</td>   
+                <td>{{item.receiptBy}}</td>    
+                <!-- <td><a [routerLink]="['/class/update', item.classId]">
+                  <i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="deleteRecord(item.classId)"><i class="fa fa-trash f-16"></i></a></td> -->
+              </tr>
+              </tbody>
+              <tfoot>
+                <tr class="table-primary">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <th>{{totalAmount | currency:'INR'}}</th>
+                  <th>{{totalDiscount | currency:'INR'}}</th>
+                  <th>{{totalNetAmount | currency:'INR'}}</th>
+                  <th>{{TotalPaidAmount | currency:'INR'}}</th>
+                  <th>{{TotalDueAmount | currency:'INR'}}</th>
+                  <th>{{TotalAdvance | currency:'INR'}}</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="15">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+                </tfoot>
+            </table>
+          </div>
+        </div>
+      </app-card>
+
+      <!-- <app-card [title]="'Payment By Payment Mode'">
+        <div *ngIf="paymentByGroup" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  Payment Mode
+                </th>
+                <th>
+                  Count
+                </th>
+                <th>
+                  Total Amount
+                </th>
+                <th>
+                  Total Discount
+                </th>
+                <th>
+                  Total Net Amount
+                </th>
+                <th>
+                  Total Paid Amount
+                </th>
+                <th>
+                  Total Due Amount
+                </th>
+                <th>
+                  Total Advance Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of paymentByGroup.paymentByCheck; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.sumTotalAmount | currency:'INR'}}</td>
+                <td>{{item.sumDiscount | currency:'INR'}}</td>
+                <td>{{item.sumNetAmount | currency:'INR'}}</td>
+                <td>{{item.sumPaidAmount | currency:'INR'}}</td>
+                <td>{{item.sumDue | currency:'INR'}}</td>
+                <td>{{item.sumAdvance | currency:'INR'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </app-card> -->
+
+      <app-card [title]="'Payment By Transaction Mode & Date'">
+        <div *ngIf="paymentByGroup" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  Payment Date
+                </th>
+                <th>
+                  Count
+                </th>
+                <th>
+                  Total Amount
+                </th>
+                <th>
+                  Total Discount
+                </th>
+                <th>
+                  Total Net Amount
+                </th>
+                <th>
+                  Total Paid Amount
+                </th>
+                <th>
+                  Total Due Amount
+                </th>
+                <th>
+                  Total Advance Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of paymentByGroup.paymentByDate; let i = index">
+                <td> {{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.sumTotalAmount | currency:'INR'}}</td>
+                <td>{{item.sumDiscount | currency:'INR'}}</td>
+                <td>{{item.sumNetAmount | currency:'INR'}}</td>
+                <td>{{item.sumPaidAmount | currency:'INR'}}</td>
+                <td>{{item.sumDue | currency:'INR'}}</td>
+                <td>{{item.sumAdvance | currency:'INR'}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="table-primary">
+                <td></td>
+                <td></td>
+                <td>{{totalCount}}</td>
+                <th>{{totalAmount | currency:'INR'}}</th>
+                <th>{{totalDiscount | currency:'INR'}}</th>
+                <th>{{totalNetAmount | currency:'INR'}}</th>
+                <th>{{TotalPaidAmount | currency:'INR'}}</th>
+                <th>{{TotalDueAmount | currency:'INR'}}</th>
+                <th>{{TotalAdvance | currency:'INR'}}</th>
+              </tr>
+              <tr>
+                <td colspan="10">
+                  <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                </td>
+              </tr>
+              </tfoot>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

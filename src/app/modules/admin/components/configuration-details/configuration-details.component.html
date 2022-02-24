@@ -1,0 +1,129 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Configuration Details'">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+          <div class="tab-pane active">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group form-default">
+                  <select class="select" formControlName="notifictionType" class="form-control form-control-Inverse ">
+                    <!-- <option *ngFor="let data of states" [ngValue]="data.notifictionType">{{data.name}}</option> -->
+                    <option value="">Select Notification Type</option>
+                    <option [ngValue]="1">Notification 1</option>
+                    <option [ngValue]="2">Notification 2</option>
+                    <option [ngValue]="3">Notification 3</option>
+                    <option [ngValue]="4">Notification 4</option>
+                  </select>
+                  <small class="messages text-danger" *ngIf="form.controls.notifictionType.errors?.required 
+                && (form.controls.notifictionType.dirty || form.controls.notifictionType.touched) || 
+                (submitted && form.controls.notifictionType.errors?.required)">Notification Type Reuired!</small>
+                  <label class="float-label">Notification Type</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-default">
+                  <select class="select" formControlName="disableAppType" class="form-control form-control-Inverse ">
+                    <!-- <option *ngFor="let data of states" [ngValue]="data.disableAppType">{{data.name}}</option> -->
+                    <option value="">Select Disable Type</option>
+                    <option [ngValue]="1">Disable App Type 1</option>
+                    <option [ngValue]="2">Disable App Type 2</option>
+                    <option [ngValue]="3">Disable App Type 3</option>
+                    <option [ngValue]="4">Disable App Type 4</option>
+                  </select>
+                  <small class="messages text-danger" *ngIf="form.controls.disableAppType.errors?.required 
+                && (form.controls.disableAppType.dirty || form.controls.disableAppType.touched) || 
+                (submitted && form.controls.disableAppType.errors?.required)">Disable App Type Reuired!</small>
+                  <label class="float-label">Disable App Type</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-default">
+                  <input type="number" feeAlertAmount="feeAlertAmount" class="form-control"
+                    formControlName="feeAlertAmount">
+                  <small class="messages text-danger" *ngIf="form.controls.feeAlertAmount.errors?.required 
+                && (form.controls.feeAlertAmount.dirty || form.controls.feeAlertAmount.touched) || 
+                (submitted && form.controls.feeAlertAmount.errors?.required)">Fee Alert Amount Required!</small>
+                  <span class="form-bar"></span>
+                  <label class="float-label">Fee Alert Amount</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-default form-inline">
+                  <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="d.toggle()" formControlName="feeAlertDate" ngbDatepicker #d="ngbDatepicker"> -->
+                <!-- <div class="input-group-append bg-default" (click)="d.toggle()" >
+                  <span class="icofont icofont-ui-calendar input-group-text"></span>
+                </div> -->
+                  <input type="date" name="feeAlertDate" class="form-control" formControlName="feeAlertDate">
+                  <small class="messages text-danger" *ngIf="form.controls.feeAlertDate.errors?.required 
+                && (form.controls.feeAlertDate.dirty || form.controls.feeAlertDate.touched) || 
+                (submitted && form.controls.feeAlertDate.errors?.required)">Fee Alert Date Reuired!</small>
+                  <span class="form-bar"></span>
+                  <label class="float-label">Fee Alert Date </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-default">
+                  <input type="text" name="paymentUrl" class="form-control" formControlName="paymentUrl">
+                  <small class="messages text-danger" *ngIf="form.controls.paymentUrl.errors?.required 
+                && (form.controls.paymentUrl.dirty || form.controls.paymentUrl.touched) || 
+                (submitted && form.controls.paymentUrl.errors?.required)">Payment Url Required!</small>
+                  <span class="form-bar"></span>
+                  <label class="float-label">Payment Url</label>
+                </div>
+              </div>
+              <div *ngIf="!data" class="col-md-12">
+                <button type="submit" class="btn btn-primary ripple light pull-right"> Add Configuration </button>
+              </div>
+              <div *ngIf="data" class="col-md-12">
+                <button type="submit" class="btn btn-primary ripple light pull-right"> Update Configuration </button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+        <br>
+        <div *ngIf="data" class="table-responsive">
+          <table class="table table-striped table-sm table-styling  table-bordered full-data-table">
+            <thead>
+              <tr class="table-primary">
+                <th>
+                  Notifiction Type
+                </th>
+                <th>
+                  Disable App Type
+                </th>
+                <th>
+                  Fee Alert Amount
+                </th>
+                <th>
+                  Fee Alert Date
+                </th>
+                <th>
+                  Payment Url
+                </th>
+                <th>
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{data.notifictionType}}</td>
+                <td>{{data.disableAppType}}</td>
+                <td>{{data.feeAlertAmount}}</td>
+                <td>{{data.feeAlertDate}}</td>
+                <td>{{data.paymentUrl}}</td>
+                <td>
+                  <a href="javascript:" (click)="updateRecord(data.configurationId)"><i class="fa fa-eye f-16"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>
+
+  </div>
+</div>

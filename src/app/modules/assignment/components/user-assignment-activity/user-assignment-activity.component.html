@@ -1,0 +1,985 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Student Assignment Activity'" [blockClass]="'tab-icon'">
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="md-tabs">
+              <ngb-tabset>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-eye-blocked f-20"></i>NOT SEEN  <label class="badge badge-lg bg-danger">{{ notSeenAssignment ? notSeenAssignment.length : '0' }}</label></ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      
+                      <app-card [title]="assignmentDetail.className + ' - ' + assignmentDetail.sectionName + ' - ' + assignmentDetail.subjectName + ' - ' + assignmentDetail.name " [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+                
+                
+                          <div *ngFor="let item of notSeenAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                              title=" {{item.studentName | uppercase}} - s/o - {{item.fatherName | uppercase}} ({{item.fatherContactNumber}}) - m/o - {{item.motherName | uppercase}} - Roll No -  {{item.rollNumber}} ">
+                              <ng-template ngbPanelContent>
+                                <div class="row">
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.name}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Student Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.studentName | uppercase}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assign To </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.className}} - {{item.sectionName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Submit Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.toBeSubmittedDate | date}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.createdDate | date:'medium'}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish By </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.publisherName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.assignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">User Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.userAssignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Description </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-10 col-sm-10'>
+                                    <p>
+                                      {{item.description}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Status </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>
+                                      {{item.assignmentStatus | UserAssignmentStatus}}
+                                    </p>
+                                  </div>
+                                </div>
+                
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+                
+                        </ngb-accordion>
+                      </app-card>
+                    
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-eye f-20"></i>SEEN  <label class="badge badge-lg bg-warning">{{ seenAssignment ? seenAssignment.length : '0' }}</label></ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      <app-card [title]="assignmentDetail.className + ' - ' + assignmentDetail.sectionName + ' - ' + assignmentDetail.subjectName + ' - ' + assignmentDetail.name " [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+                          <div *ngFor="let item of seenAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                            title=" {{item.studentName | uppercase}} - s/o - {{item.fatherName | uppercase}} ({{item.fatherContactNumber}}) - m/o - {{item.motherName | uppercase}} - Roll No -  {{item.rollNumber}} ">
+                              <ng-template ngbPanelContent>
+                                <div class="row">
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.name}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Student Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.studentName | uppercase}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assign To </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.className}} - {{item.sectionName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Submit Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.toBeSubmittedDate | date}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.createdDate | date:'medium'}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish By </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.publisherName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.assignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">User Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.userAssignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Description </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-10 col-sm-10'>
+                                    <p>
+                                      {{item.description}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Status </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>
+                                      {{item.assignmentStatus | UserAssignmentStatus}}
+                                    </p>
+                                  </div>
+                
+                                </div>
+                
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+                
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-checked f-20"></i>SUBMITTED  <label class="badge badge-lg bg-info">{{ submittedAssignment ? submittedAssignment.length : '0' }}</label></ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      
+                      <app-card [title]="assignmentDetail.className + ' - ' + assignmentDetail.sectionName + ' - ' + assignmentDetail.subjectName + ' - ' + assignmentDetail.name " [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+                
+                
+                          <div *ngFor="let item of submittedAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                            title=" {{item.studentName | uppercase}} - s/o - {{item.fatherName | uppercase}} ({{item.fatherContactNumber}}) - m/o - {{item.motherName | uppercase}} - Roll No -  {{item.rollNumber}} ">
+                              <ng-template ngbPanelContent>
+                                <div class="row">
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.name}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Student Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.studentName | uppercase}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assign To </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.className}} - {{item.sectionName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Submit Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.toBeSubmittedDate | date}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.createdDate | date:'medium'}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish By </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.publisherName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.assignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">User Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.userAssignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Description </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-10 col-sm-10'>
+                                    <p>
+                                      {{item.description}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Status </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>
+                                      {{item.assignmentStatus | UserAssignmentStatus}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Add Assessment </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p *ngIf="(item.assignmentStatus == 3 || item.assignmentStatus == 4|| item.assignmentStatus == 5)">
+                                      <button type="button" (click)="openAssignmentModal(item.userId)"
+                                        class="btn btn-primary ripple light pull-right"><i class="icofont icofont-book-alt"></i>Pending
+                                        Assessment</button>
+                                    </p>
+                                    <p *ngIf="(item.assignmentStatus == 7)">
+                                      <button type="button" (click)="openAssignmentModal(item.userId)"
+                                        class="btn btn-danger ripple light pull-right"><i class="icofont icofont-eye-alt"></i>Assignment
+                                        Rejected! Try Again</button>
+                                    </p>
+                                    <p *ngIf="(item.assignmentStatus == 10)">
+                                      <button class="btn btn-success ripple light pull-right"><i
+                                          class="icofont icofont-check-circled"></i>Successfully Assessed</button>
+                                    </p>
+                                  </div>
+                
+                                </div>
+                
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+                
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-rotation f-20"></i>RE-SUBMITTED  <label class="badge badge-lg bg-primary">{{ reSubmittedAssignment ? reSubmittedAssignment.length : '0' }}</label></ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      
+                      <app-card [title]="assignmentDetail.className + ' - ' + assignmentDetail.sectionName + ' - ' + assignmentDetail.subjectName + ' - ' + assignmentDetail.name " [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+                
+                
+                          <div *ngFor="let item of reSubmittedAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                            title=" {{item.studentName | uppercase}} - s/o - {{item.fatherName | uppercase}} ({{item.fatherContactNumber}}) - m/o - {{item.motherName | uppercase}} - Roll No -  {{item.rollNumber}} ">
+                              <ng-template ngbPanelContent>
+                                <div class="row">
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.name}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Student Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.studentName | uppercase}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assign To </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.className}} - {{item.sectionName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Submit Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.toBeSubmittedDate | date}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.createdDate | date:'medium'}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish By </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.publisherName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.assignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">User Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.userAssignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Description </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-10 col-sm-10'>
+                                    <p>
+                                      {{item.description}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Status </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>
+                                      {{item.assignmentStatus | UserAssignmentStatus}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Add Assessment </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p *ngIf="(item.assignmentStatus == 3 || item.assignmentStatus == 4|| item.assignmentStatus == 5)">
+                                      <button type="button" (click)="openAssignmentModal(item.userId)"
+                                        class="btn btn-primary ripple light pull-right"><i class="icofont icofont-book-alt"></i>Pending
+                                        Assessment</button>
+                                    </p>
+                                    <p *ngIf="(item.assignmentStatus == 7)">
+                                      <button type="button" (click)="openAssignmentModal(item.userId)"
+                                        class="btn btn-danger ripple light pull-right"><i class="icofont icofont-eye-alt"></i>Assignment
+                                        Rejected! Try Again</button>
+                                    </p>
+                                    <p *ngIf="(item.assignmentStatus == 10)">
+                                      <button class="btn btn-success ripple light pull-right"><i
+                                          class="icofont icofont-check-circled f-20"></i>Successfully Assessed</button>
+                                    </p>
+                                  </div>
+                
+                                </div>
+                
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+                
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-tick-mark f-20"></i>COMPLETED  <label class="badge badge-lg bg-success">{{ completedAssignment ? completedAssignment.length : '0' }}</label></ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      
+                      <app-card [title]="assignmentDetail.className + ' - ' + assignmentDetail.sectionName + ' - ' + assignmentDetail.subjectName + ' - ' + assignmentDetail.name " [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1" class="ngb-accordion">
+                
+                
+                          <div *ngFor="let item of completedAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                            title=" {{item.studentName | uppercase}} - s/o - {{item.fatherName | uppercase}} ({{item.fatherContactNumber}}) - m/o - {{item.motherName | uppercase}} - Roll No -  {{item.rollNumber}} ">
+                              <ng-template ngbPanelContent>
+                                <div class="row">
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.name}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Student Name </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.studentName | uppercase}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assign To </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.className}} - {{item.sectionName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Submit Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.toBeSubmittedDate | date}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish Date </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.createdDate | date:'medium'}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Publish By </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>{{item.publisherName}}</p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.assignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">User Assignment Attachments </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <div class="row align-items-center m-b-30">
+                                      <div *ngFor="let attachment of item.userAssignmentAttachments">
+                
+                                        <a href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                          <div class="col-auto">
+                                            <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                            <!-- <i class="fa fa-file-pdf-o text-c-red f-30">
+                  
+                                              </i> -->
+                                          </div>
+                                        </a>
+                                        <!-- <img  class="img-60" src="https://localhost:44365/{{attachment.path}}"> -->
+                                      </div>
+                                      <!-- <div class="col-auto">
+                                          <i class="fa fa-file-pdf-o text-c-red f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-excel-o text-c-green f-30"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                          <i class="fa fa-file-word-o text-c-blue f-30"></i>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Description </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-10 col-sm-10'>
+                                    <p>
+                                      {{item.description}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Status </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p>
+                                      {{item.assignmentStatus | UserAssignmentStatus}}
+                                    </p>
+                                  </div>
+                
+                                  <div class='col-2 col-sm-2'>
+                                    <div class="form-group">
+                                      <label class="form-control-label">Add Assessment </label>
+                                    </div>
+                                  </div>
+                                  <div class='col-4 col-sm-4'>
+                                    <p *ngIf="(item.assignmentStatus == 3 || item.assignmentStatus == 4|| item.assignmentStatus == 5)">
+                                      <button type="button" (click)="openAssignmentModal(item.userId)"
+                                        class="btn btn-primary ripple light pull-right"><i class="icofont icofont-book-alt"></i>Pending
+                                        Assessment</button>
+                                    </p>
+                                    <p *ngIf="(item.assignmentStatus == 7)">
+                                      <button type="button" (click)="openAssignmentModal(item.userId)"
+                                        class="btn btn-danger ripple light pull-right"><i class="icofont icofont-eye-alt"></i>Assignment
+                                        Rejected! Try Again</button>
+                                    </p>
+                                    <p *ngIf="(item.assignmentStatus == 10)">
+                                      <button class="btn btn-success ripple light pull-right"><i
+                                          class="icofont icofont-check-circled"></i>Successfully Assessed</button>
+                                    </p>
+                                  </div>
+                
+                                </div>
+                
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+                
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<app-modal-animation [modalID]="'AssessmentModel'" [modalClass]="'md-effect-1'">
+  <h3>Submit Assessment</h3>
+  <div>
+    <br>
+    <br>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-material">
+      <div class='row'>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <input type="number" max="10" name="rating" class="form-control" formControlName="rating">
+            <small class="messages text-danger" *ngIf="form.controls.rating.errors?.required 
+        && (form.controls.rating.dirty || form.controls.rating.touched) || 
+        (submitted && form.controls.rating.errors?.required)">Rating Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Rating</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <input type="number" name="mark" class="form-control" formControlName="mark">
+            <small class="messages text-danger" *ngIf="form.controls.mark.errors?.required 
+        && (form.controls.mark.dirty || form.controls.mark.touched) || 
+        (submitted && form.controls.mark.errors?.required)">Mark Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Marks</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <input type="text" name="remark" class="form-control" formControlName="remark">
+            <small class="messages text-danger" *ngIf="form.controls.remark.errors?.required 
+        && (form.controls.remark.dirty || form.controls.remark.touched) || 
+        (submitted && form.controls.remark.errors?.required)">Remark Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Remark</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <input type="text" name="feedback" class="form-control" formControlName="feedback">
+            <small class="messages text-danger" *ngIf="form.controls.feedback.errors?.required 
+        && (form.controls.feedback.dirty || form.controls.feedback.touched) || 
+        (submitted && form.controls.feedback.errors?.required)">Feedback Required!</small>
+            <span class="form-bar"></span>
+            <label class="float-label">Feedback</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group form-default">
+            <select class="select" formControlName="userAssignmentStatus" class="form-control form-control-Inverse ">
+              <!-- <option *ngFor="let data of states" [ngValue]="data.userAssignmentStatus">{{data.name}}</option> -->
+              <option value="">Select Status</option>
+              <option [ngValue]="10">Completed</option>
+              <option [ngValue]="7">Rejected</option>
+              <option [ngValue]="9">NeedToDiscuss</option>
+            </select>
+            <small class="messages text-danger" *ngIf="form.controls.userAssignmentStatus.errors?.required 
+        && (form.controls.userAssignmentStatus.dirty || form.controls.userAssignmentStatus.touched) || 
+        (submitted && form.controls.userAssignmentStatus.errors?.required)">Status Reuired!</small>
+            <span class="form-bar"></span>
+            <span class="form-bar"></span>
+            <label class="float-label">Status</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary ripple light pull-right"> Submit </button>
+        </div>
+      </div>
+    </form>
+
+    <button (click)="closeMyModal($event)" class="btn btn-primary md-close">Close</button>
+  </div>
+  <button (click)="closeMyModal($event)" aria-label="Close" class="md-close-btn"><i
+      class="icofont icofont-ui-close"></i></button>
+</app-modal-animation>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

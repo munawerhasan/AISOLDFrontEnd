@@ -1,0 +1,492 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Student Assignment Assessment'" [blockClass]="'tab-icon'">
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="md-tabs">
+              <ngb-tabset>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-tick-mark f-20"></i>COMPLETED <label
+                      class="badge badge-lg bg-success">{{ assessedAndClosedAssignment ? assessedAndClosedAssignment.length : '0' }}</label>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+                      <app-card
+                        [title]=""
+                        [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1"
+                          class="ngb-accordion">
+                          <div *ngFor="let item of assessedAndClosedAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                              title="{{item.createdDate | date:'medium'}} - {{item.subjectName}} - {{item.name}} - RATING-{{item.rating}}">
+                              <ng-template ngbPanelContent>
+                                <div class="scrollmenu">
+                                  <div class="taskboard page-height">
+                                    
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">Assignment Detail</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Assignment Name</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Subject Name</div>
+                                            <small class="card-text text-muted">{{item.subjectName  }}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assignment Type</div>
+                                            <small class="card-text text-muted">{{item.assignmentType}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Description</div>
+                                            <small class="card-text text-muted">{{item.assignmentDescription}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Teacher Name</div>
+                                            <small class="card-text text-muted">{{item.publisherName}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Publish Date</div>
+                                            <small class="card-text text-muted">{{item.publishDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Submission Date</div>
+                                            <small class="card-text text-muted">{{item.toBeSubmittedDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Assignment's Attachments</div>
+                                            <div class="row align-items-center" >
+                                              <a *ngFor="let attachment of item.assignmentAttachments" href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                                <div class="col-auto">
+                                                  <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">Assignment Submit Detail</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Description By Student</div>
+                                            <small class="card-text text-muted">{{item.userAssignmentFeedback}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Date</div>
+                                            <small class="card-text text-muted">{{item.createdDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-success">
+                                            <div class="taskboard-task-title">Rating By Teacher</div>
+                                            <small class="card-text text-muted">{{item.rating}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Mark By Teacher</div>
+                                            <small class="card-text text-muted">{{item.mark}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Remark By Teacher</div>
+                                            <small class="card-text text-muted">{{item.remark}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Feedback By Teacher</div>
+                                            <small class="card-text text-muted">{{item.feedback}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Student's Attachment(s)</div>
+                                            <div class="row align-items-center" >
+                                              <a *ngFor="let attachment of item.userAssignmentAttachments" href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                                <div class="col-auto">
+                                                  <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">History</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assignment Created Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Seen By Student Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-danger">
+                                            <div class="taskboard-task-title">Submitted Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Rejected Info</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Need TO Discuss Info</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Resubmitted Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-close-squared-alt f-20"></i>Rejected <label
+                      class="badge badge-lg bg-danger">{{ rejectedAssignment ? rejectedAssignment.length : '0' }}</label>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+
+                      <app-card
+                        [title]=""
+                        [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1"
+                          class="ngb-accordion">
+                          <div *ngFor="let item of rejectedAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                              title="{{item.createdDate | date:'medium'}} - {{item.subjectName}} - {{item.name}} - RATING-{{item.rating}}">
+                              <ng-template ngbPanelContent>
+                                <div class="scrollmenu">
+                                  <div class="taskboard page-height">
+                                    
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">Assignment Detail</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Assignment Name</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Subject Name</div>
+                                            <small class="card-text text-muted">{{item.subjectName  }}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assignment Type</div>
+                                            <small class="card-text text-muted">{{item.assignmentType}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Description</div>
+                                            <small class="card-text text-muted">{{item.assignmentDescription}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Teacher Name</div>
+                                            <small class="card-text text-muted">{{item.publisherName}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Publish Date</div>
+                                            <small class="card-text text-muted">{{item.publishDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Submission Date</div>
+                                            <small class="card-text text-muted">{{item.toBeSubmittedDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Assignment's Attachments</div>
+                                            <div class="row align-items-center" >
+                                              <a *ngFor="let attachment of item.assignmentAttachments" href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                                <div class="col-auto">
+                                                  <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">Assignment Submit Detail</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Description By Student</div>
+                                            <small class="card-text text-muted">{{item.userAssignmentFeedback}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Date</div>
+                                            <small class="card-text text-muted">{{item.createdDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-success">
+                                            <div class="taskboard-task-title">Rating By Teacher</div>
+                                            <small class="card-text text-muted">{{item.rating}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Mark By Teacher</div>
+                                            <small class="card-text text-muted">{{item.mark}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Remark By Teacher</div>
+                                            <small class="card-text text-muted">{{item.remark}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Feedback By Teacher</div>
+                                            <small class="card-text text-muted">{{item.feedback}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Student's Attachment(s)</div>
+                                            <div class="row align-items-center" >
+                                              <a *ngFor="let attachment of item.userAssignmentAttachments" href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                                <div class="col-auto">
+                                                  <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">History</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assignment Created Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Seen By Student Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-danger">
+                                            <div class="taskboard-task-title">Submitted Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Rejected Info</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Need TO Discuss Info</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Resubmitted Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><i class="icofont icofont-architecture-alt f-20"></i>NEED TO DISUSS <label
+                      class="badge badge-lg bg-warning">{{ needToDiscussAssignment ? needToDiscussAssignment.length : '0' }}</label>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                    <div [@fadeInOutTranslate] class="m-t-15">
+
+                      <app-card
+                        [title]=""
+                        [blockClass]="'accordion-block'" [cardOptionBlock]="true">
+                        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-color-p1"
+                          class="ngb-accordion">
+                          <div *ngFor="let item of needToDiscussAssignment">
+                            <ngb-panel id="{{item.userAssignmentId}}"
+                              title="{{item.createdDate | date:'medium'}} - {{item.subjectName}} - {{item.name}} - RATING-{{item.rating}}">
+                              <ng-template ngbPanelContent>
+                                <div class="scrollmenu">
+                                  <div class="taskboard page-height">
+                                    
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">Assignment Detail</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Assignment Name</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Subject Name</div>
+                                            <small class="card-text text-muted">{{item.subjectName  }}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assignment Type</div>
+                                            <small class="card-text text-muted">{{item.assignmentType}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Description</div>
+                                            <small class="card-text text-muted">{{item.assignmentDescription}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Teacher Name</div>
+                                            <small class="card-text text-muted">{{item.publisherName}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Publish Date</div>
+                                            <small class="card-text text-muted">{{item.publishDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Submission Date</div>
+                                            <small class="card-text text-muted">{{item.toBeSubmittedDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-info">
+                                            <div class="taskboard-task-title">Assignment's Attachments</div>
+                                            <div class="row align-items-center" >
+                                              <a *ngFor="let attachment of item.assignmentAttachments" href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                                <div class="col-auto">
+                                                  <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">Assignment Submit Detail</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Description By Student</div>
+                                            <small class="card-text text-muted">{{item.userAssignmentFeedback}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Date</div>
+                                            <small class="card-text text-muted">{{item.createdDate}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-success">
+                                            <div class="taskboard-task-title">Rating By Teacher</div>
+                                            <small class="card-text text-muted">{{item.rating}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Mark By Teacher</div>
+                                            <small class="card-text text-muted">{{item.mark}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Remark By Teacher</div>
+                                            <small class="card-text text-muted">{{item.remark}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Feedback By Teacher</div>
+                                            <small class="card-text text-muted">{{item.feedback}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Student's Attachment(s)</div>
+                                            <div class="row align-items-center" >
+                                              <a *ngFor="let attachment of item.userAssignmentAttachments" href="{{baseURL}}/{{attachment.path}}" target="_blank" download>
+                                                <div class="col-auto">
+                                                  <img class="img-30" src="assets/images/ais/download_icon.png" alt="download">
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="taskboard-wrapper">
+                                      <div class="taskboard-list">
+                                        <h6 class="taskboard-header">History</h6>
+                                        <div class="taskboard-cards" [dragula]='"task-group"'>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assignment Created Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Seen By Student Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light task-status-danger">
+                                            <div class="taskboard-task-title">Submitted Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Rejected Info</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Need TO Discuss Info</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Resubmitted Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+                                          <div class="taskboard-task bg-light">
+                                            <div class="taskboard-task-title">Assessment Date</div>
+                                            <small class="card-text text-muted">{{item.name}}</small>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                              </ng-template>
+                            </ngb-panel>
+                          </div>
+
+                        </ngb-accordion>
+                      </app-card>
+
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>
